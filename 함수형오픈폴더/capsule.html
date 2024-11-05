@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const Person = (function(){
+      let _age = 0; //private
+
+      //생성자 함수
+      function Person(name, age){
+        this.name = name; //public
+        _age = age;
+      }
+
+    //프로토타입 메서드
+     Person.prototype.sayHi = function () {
+      console.log(`Hi! My name is ${this.name}. I am ${_age}.`)
+     };
+     //생성자 함수를 반환
+     return Person;
+    }());
+
+    const me = new Person('Lee', 20);
+    me.sayHi(); //
+    console.log(me.name);
+    console.log(me._age);
+
+
+    const you = new Person('kim', 30);
+    me.sayHi(); //
+    console.log(you.name);
+    console.log(you._age);
+  </script>
+</body>
+</html>

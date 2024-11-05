@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+class book {
+  construtor(title, author){
+    this.title = title;
+    this.author = author;
+  }
+  getDetails(){
+    return `${this.title} 저자 : ${this.author}`;
+  }
+}
+
+
+const book = new Book("해리포터와 마법사의 돌", "J.K. 롤링");
+
+console.log(book.getDetails()); // "해리포터와 마법사의 돌 저자:
+J.K. 롤
+  </script>
+</body>
+</html>

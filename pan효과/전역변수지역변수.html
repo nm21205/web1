@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습문제</title>
+</head>
+<body>
+  <script>
+    var starX = 1;
+function printStar(Num){
+ for(starX = 1; starX <= Num; starX++){
+ printStarX(starX);
+ }
+}
+function printStarX(Num){
+ var starX;
+ for(starX = 1; starX <= Num; starX++){
+ console.log('*');
+ }
+}
+printStar(3);
+
+var MYAPP = {}; //전역 네임스페이스 객체
+MYAPP.name = 'Lee'; //MYAPP객체의 name프로퍼티를 생성하고 값으로 "Lee"를 할당
+console.log(MYAPP.name)
+
+//네임스페이스 객체에 또 다른 네임스페이스 객체를 프로퍼티로 추가해서 네임스페이스를 계층적으로 구성할 수 있다.
+
+MYAPP.person = {
+  name :'Lee',
+  address : 'Seoul'
+}
+console.log(MYAPP.person.name)
+//정보 은닉
+var Counter = (function(){
+  var num = 0; //프라이빗 멤버(외부에 노출되는 프로퍼티를 퍼블릭 멤버라고 한다)
+  return{
+    increase(){
+      return ++num;
+    },
+    decrease(){
+      return --num; //num값을 1감소시켜서 반환
+    }
+  }
+}())
+//private변수는 외부로 노출되지 않는다.
+console.log(Counter.num);
+console.log(Counter.increase())
+console.log(Counter.increase())
+console.log(Counter.increase())
+console.log(Counter.decrease())
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title>sample5</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #clock {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 100px auto 0;
+    }
+
+    #clock img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+    }
+    
+    .sec {
+      width: 3px;
+      height: 140px;
+      transform-origin: 50% 100%;
+      position: absolute;
+      right: 50%;
+      top: 3%;
+      background-color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="clock">
+    <img alt="clock" src="clock.png" />
+    <img alt="hour" src="h.png" class="hour" />
+    <img alt="min" src="m.png" class="min" />
+    <div class="sec"></div>
+  </div>
+  <div class="digital"></div>
+</body>
+<script>
+ function clock(){
+  //현재 날짜 정보
+  const today = new Date();
+  let hour = today.getHours();
+  const minute = today.getMinutes();
+  const second = today.getSeconds();
+  const milliSecond = today.getMilliseconds();
+
+  //hours가 12보다 크면 12를 빼서 0~11범위로 만듭니다
+  if(hour > 11) hour -= 12;
+
+  //초침의 각도 계산, 초당 6도(360도 /60초)이고, 밀리초를 추가하여 좀더 정밀한 각도를 계산합니다.
+  const degreeOfSecond = (second * 6) +(milliSecond * 6 / 1000);
+  const degreeOfMitute = (minute * 6) + (degreeOfSecond / 60);
+  //시침의 각도 계산, 시당 30도(360도 / 12시간)이고, 분침의 위치에 따라 조정
+  const degreeOfHour = (hour * 30) + (degreeOfMitute / 12);
+
+  //#clock요소의 모든 자식요소를 선택하여 needles 변수에 저장
+  const needles = document.querySelector('#clock').children;
+  //시침을 degreeOfHour 각도로 회전
+  needles[1].style.transform = `rotate(${degreeOfHour}deg)`;
+  //분침을 degreeOfMinute각도로 회전
+  needles[2].style.transform = `rotate(${degreeOfMitute}deg)`;
+  needles[3].style.transform = `rotate(${degreeOfSecond}deg)`;
+  
+  //초침의 색상을 각도에 따라서 변경
+  //초침의 색상을 설정하기 위한 빨간색 값 초기화
+  let redNeedle = 0;
+  let greenNeedle = 0;
+  let blueNeedle = 0;
+
+  //초침의 각도에 따라 색상을 조정하는 조건문
+  if(degreeOfSecond < 90){
+    //초침의 각도가 0도에서 90도 사이일 때 빨간색 값 계산, ,각도가 커질수록 빨간색이 강해집니다.(Math.round() = 반올림)
+  redNeedle = Math.round(255 * degreeOfSecond / 90);
+  }else if(90 <= degreeOfSecond && degreeOfSecond < 180){
+   //초침의 각도가 90도에서 180도 사이일 때 실행
+   //빨간색 값 감소
+   redNeedle = Math.round(255 - (255 * (degreeOfSecond - 90) / 90))
+   greenNeedle = Math.round(255 * (degreeOfSecond - 90) / 90)
+  }else if(180 <= degreeOfSecond && degreeOfSecond < 270){
+      //초침의 각도가 180도에서 270도일때
+      greenNeedle = Math.round(255 - (255 * (degreeOfSecond - 180) / 90))
+   blueNeedle = Math.round(255 * (degreeOfSecond - 180) / 90)
+  }
+  else{//초침의 각도가 270도일상일때
+    blueNeedle = Math.round(255 - (255 * (degreeOfSecond - 270) / 90))
+  }
+  //console.log(redNeedle)
+  //초침의 배경색상을 rgb(redNeedle, greenNeedle, blueNeedle)로 설정하여 배경색상이 시간에 변화하도록 합니다.
+  needles[3].style.backgroundColor = `rgb(${redNeedle},${greenNeedle}, ${blueNeedle})`;
+ }
+
+ setInterval(clock,1000/60);
+</script>
+
+</html>

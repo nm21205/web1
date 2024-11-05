@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/103d787f99.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--노멀라이즈-->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <style>
+      ul,
+      li {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      body {
+        color: #333;
+      }
+
+      .container {
+        width: 100%;
+        min-width: 1200px;
+        height: 720px;
+        background-image: url(/연습문제이미지/main.jpg);
+        background-position: center;
+        background-size: cover;
+        /*영역에 빈공간 없도록 배경이미지를 채워줌*/
+      }
+      .container > .wrap {
+        width: 1200px;
+        height: 100%;
+        margin: 0 auto;
+        position: relative;
+      }
+      nav {
+        /*위드랑 하이트 줄필요없다?*/
+        display: flex;
+        padding: 20px 10px;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav > .gnb {
+        display: flex;
+        font-size: 14px;
+        color: #fff;
+      }
+      .gnb > li {
+        margin-left: 40px;
+      }
+
+      .gnb > li > a:hover {
+        border-bottom: 2px solid #fff;
+      }
+      .gnb > li > a {
+        padding-bottom: 5px;
+      }
+      .txt {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: cener;
+        color: #fff;
+        user-select: none;
+      }
+
+      .txt i {
+        font-size: 36px;
+        color: #fff;
+        margin: 20px 10px 0;
+      }
+
+      .dot {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+
+      }
+
+      .dot > li {width: 15px;
+      height: 15px;
+    border-radius: 50%;
+  border: 1px solid #fff;
+  margin: 0 5px;
+cursor: pointer;}
+
+.dot > li:hover{background-color: #fff;}
+.dot >li.hover,
+.dot >li.on{background-color: #fff;}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrap">
+        <nav>
+          <h1>
+            <a href=""
+              ><img src="/연습문제이미지/icon.png" width="60" alt="logo"
+            /></a>
+          </h1>
+          <ul class="gnb">
+            <li><a href="#">about</a></li>
+            <li><a href="#">news</a></li>
+            <li><a href="#">portfolio</a></li>
+            <li><a href="#">asdd</a></li>
+            <li><a href="#">soon</a></li>
+            <li><a href="#">god</a></li>
+          </ul>
+        </nav>
+        <div class="txt">
+          <h1>Lorem ipsum dolor, sit amet consectetur adipisiciur.</h1>
+          <div class="btn">
+            <button type="button">
+              <i class="fa-solid fa-arrow-down-a-z"></i>
+            </button>
+            <button type="button">
+              <i class="fa-solid fa-arrow-down-a-z"></i>
+            </button>
+          </div>
+        </div>
+        <ul class="dot">
+          <li class="on"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

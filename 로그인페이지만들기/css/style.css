@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+body{
+  width:800px;
+  height:100%;
+  border: 1px solid;
+}
+.topintro {
+  display: flex;
+  justify-content:space-between;
+  margin-bottom: 40px;
+  border-bottom: 1px solid;
+  align-items: center;
+  height: 50px;
+}
+
+.topintro > .lolo > button {
+  margin-right: 10px;
+}
+
+.logo > button >i {
+  font-size: 20px;
+  
+}
+
+.topintro > div > button{
+  background-color: aqua;
+border: none;
+margin-left: 10px;
+}
+
+
+
+.menu > div {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  
+}
+
+.menu > div > button {
+  background-color: aqua;
+  border: none;
+}
+
+
+.int {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.int {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.int > button {
+  background-color: aqua;
+  border: none;
+  font-size: 10px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.main >.logins>  .pw{
+  letter-spacing: -1px;
+}
+
+
+
+.main > .ck > button{
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 4px;
+  background-color: aqua;
+ 
+}
+
+.join {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+footer {
+  background-color: blueviolet
+}
+
+.last {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  margin-bottom: 40px;
+  border-top: 1px solid;
+}
+
+.last > div {
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+
+.right > p {
+  margin-bottom: 20px;
+}
+
+
+

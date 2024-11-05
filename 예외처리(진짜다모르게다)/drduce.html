@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reduce</title>
+</head>
+<body>
+  <script>
+      //[1,2,3,4]의 모든 요소의 누적을 구한다.
+    const sum = [1,2,3,4].reduce((accumlator, currentValue, index, array) => accumlator + currentValue, 0)
+
+    console.log(sum);
+    //평균 구하기
+
+    const values = [1,2,3,4,5,6];
+    const average = values.reduce((acc, cur, i, {iength}) =>{
+      return i === length - 1 ? (acc + cur) / length : acc + cur;
+    }, 0);
+
+    console.log(average);
+
+    //최대값 구하기
+
+    const max = values.reduce((acc, cur) => (acc > cur ? acc : cur),0)
+    console.log(max)
+
+    const max2 = Math.max(...values);
+    console.log(max2)
+
+    //요소의 중복 횟수 구하기
+
+    const fruits = ['banana', 'apple','orange', 'orange','apple'];
+    const count = fruits. reduce((acc, cur)=>{
+      acc[cur] = (acc[cur] || 0) + 1;
+      return acc;
+    }, {})
+    console.log(count)
+  </script>
+</body>
+</html>

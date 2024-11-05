@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin: 0; padding: 0;}
+.container {display: flex;
+flex-direction: row;
+width: 100%;
+width: 800xp;
+height: 300px;
+outline: 1px solid red;
+justify-content: space-evenly;
+background-color: aquamarine;
+position: relative;}
+
+
+body {width: 800px;
+  height: 300px;
+  box-sizing: border-box;}
+
+.second {justify-content: center;
+width: 420px;
+margin-right: 90px;
+text-align: center;
+display: block;}
+
+
+
+ul, li {list-style: none;}
+
+ul>:nth-child(2){margin: 0 20px;}
+
+.box{width: 380px;}
+.box1 {position: absolute;
+top:46px;
+left: 0;
+z-index: 1;}
+
+.box2 {position: relative;
+  left:200px;
+  top: 48px;
+z-index: 1;}
+.box3 {position: relative;
+left: 0;
+top:40px;}
+
+h1{font-size: 22px;}
+.word {font-size: 12px;}
+.end{font-size: 14px;}
+
+ul, ul {width: 140px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+    <div class="box1"><img src="/연습문제이미지/space_man.png" alt="" srcset=""></div>
+  <div class="box2"><img src="/연습문제이미지/mars.png" alt="" srcset=""></div>
+  <div class="box3"><img src="/연습문제이미지/cloud.png" alt="" srcset=""></div>
+</div>
+  <div class="second">
+    <ul>
+      <li><h1>Space Tourism</h1></li>
+      <li class="word"><label>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ullam porro,</label></li>
+      <li class="end"><p>READ MORE</p></li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

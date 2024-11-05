@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //커피주문함수
+
+    function makeCoffee(roastType){
+       return function(sugar){
+        return function(cream){
+          return console.log(`Coffee, ${roastType}, sugar:${sugar}, cream: ${cream}`);
+        }
+       }
+    }
+
+    //makeCoffee함수 호출
+    makeCoffee('Dark Roast')(1)(2)
+
+    //부분 적용
+    const mediumRost = makeCoffee("Medium Roast");
+
+
+    //주문이 들어왔다고 가정
+
+    const order1 = mediumRost(1)(2);
+    const order2 = mediumRost(2)(3);
+
+
+    //샌드위치를 만드는 함수 예시(HOF패턴)
+
+    const ingredientAdder = (ingredient) => (input) => console.log(`${input}, ${ingredient}`);
+
+    //bacon, lettuce, cheese를 고정된 인자로 전달
+    const bacon = ingredientAdder("bacon");
+    const lettuce = ingredientAdder("lettuce");
+    const cheese = ingredientAdder("sheese");
+
+    const makeSandWich = bread => cheese(lettuce(bacon(bread)))
+
+    makeSandWich('white Bread')
+  </script>
+</body>
+</html>

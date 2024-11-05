@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul class="itemlist">
+    <li><input type="button" value="button1"></li>
+    <li><input type="button" value="button2"></li>
+    <li><input type="button" value="button3"></li>
+    </ul>
+  <script>
+    //input요소들을 nodeList로 할당
+    const buttons = document.querySelectorAll('input');
+   //buttons변수에 할당한 input요소들을 선택하고forEach문으로 input요소를 순환하면서 click이벤트 생성
+   // => alert으로 input요소의 value을 출력합니다.
+    buttons.forEach(button => button.addEventListener
+      ("click", e => alert(`${e.target.value} 클릭`)));
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>토글스위치</title>
+  <style>
+    .switch{
+      position: relative;
+      display: inline-block;/*넓이와 높이를 설정하기 위해 적용*/
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch > input{display: none;} /*체크박스는 화면에서 제거*/
+    /*실제 보이는 스위치*/
+    .slider{position: absolute;/*부모요소와같은크기로 겹쳐짐*/
+    top:0; left: 0; bottom: 0; right: 0;
+  background-color: #ccc;
+cursor: pointer;
+transition : background .4s;
+}
+
+.slider::before{content:"";
+position: absolute;
+width: 26px;
+height: 26px;
+background-color: #fff;;
+left: 4px; bottom:4px;
+transition:transform .4s;
+}
+/*체크박스가 체크됬을 때(스위치 on)*/
+input:checked+ .slider{background-color: skyblue;}
+/*체크박스가 체크되었을때 포인터를 오른쪽으로 이동*/
+input:checked+ .slider::before{transform: translateX(26px);}
+
+
+
+/*둥근모양*/
+.round {border-radius: 34px;}
+.round::before{border-radius: 50%;}
+  </style>
+</head>
+<body>
+  <label class="switch">
+    <input type="checkbox">
+    <span class="slider"></span>
+  </label>
+  <label class="switch">
+    <input type="checkbox" checked>
+    <span class="slider"></span>
+  </label>
+  <br><br>
+
+  <label class="switch">
+    <input type="checkbox">
+    <span class="slider round"></span>
+  </label>
+  <label class="switch">
+    <input type="checkbox" checked>
+    <span class="slider round"></span>
+  </label>
+  <br><br>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let person ={
+      name: "홍길동",
+      age : 16
+    }
+    
+    //person.age = 20;
+    person["age"] = 20; //대괄호로 객체의 프로퍼티로 접근할때는 문자열로 작성한다.
+    //숫자 속성명이 가능하다
+    person[0] = "호형호제";
+    person[1] = "도술";
+    console.log(person[0]) //프로퍼티키가 숫자일 경우 ""로 감싸지 않아도 된다
+
+    
+
+    const MAX =1000, MIN = 1;
+    let count = {}; //랜덤으로 생성된 숫자가 중복되면 카운트 해주는 변수
+
+    //100번 호출하는 코드
+    for(let i= 0; i < 100; i++){
+      //MIN에서 MAX사이의 정수를 구하는 공식
+      let a = Math.floor(Math.random() * (MAX - MIN + 1) + MIN)
+     //count배열의 순번이 생성한 랜덤숫자일 경우 그 값이 undefined (값이 할당 되지 않았다)일때
+      if(typeof count[a] == "undefined") count[a] = 1;
+      else count[a] += 1; //같은 숫자가 있을 경우 1을 증가시킴
+    } 
+
+    for(let key in count){
+ if(count[key] >=2) console.log(key, count[key])
+
+ console.log("length=", Object.keys(count).length)
+    }
+
+
+  </script>
+</body>
+</html>

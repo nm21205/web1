@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+
+let e = [3, 1, 6, 2, 4, 8, 10, 5, 11, 7, 9];
+e.sort(compareNumber);
+console.log(e);
+function compareNumber(i,j) {return
+  //첫번째 매개변수 - 두번째 매개변수 = 올림차순
+  //두번째 매개변수 = 첫번째 매개변수 = 첫번째 매개변수 내림차순
+  j - i;
+}
+
+  </script>
+ 
+
+
+</body>
+</html>

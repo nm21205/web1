@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #arena{
+      width:480px;
+      height:360px;
+      margin:auto;
+      background:url(images/rays.svg) no-repeat center/cover;
+    }
+    #home{
+      margin:105px 10px;
+      float:left;
+    }
+    #guest{
+      margin:105px 10px;
+      float:right;
+    }
+    #control{
+      width:480px;
+      margin:20px auto 0;
+      line-height:30px;
+      text-align: center;
+      background-color:#cbc39d;
+      cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="control">시작</div>
+  <div id="arena">
+      <img id="home" src="images/dice-1.png" alt="home">
+      <img id="guest" src="images/dice-1.png" alt="guest">
+  </div>
+  <script>
+    document.querySelector("#control").addEventListener("click", function
+    (){
+      console.log(this.firstChild.nodeValue, this.textContent)
+      if(this.firstChild.nodeValue == '시작'){//게임시
+        this.firstChild.nodeValue = '종료/결과';
+        this.style.backgroundColor = "#9a5cb";
+        this.style.color = 'white';
+        playGame();
+      }else{
+        this.style.backgroundColor = "#cdc39d";
+        this.firstChild.nodeValue ="시작";
+        this.style.color = "black";
+        stopGame();
+      }
+    })
+
+    const home =  document.querySelector("#home");
+    const guest = document.querySelector("#guest");
+  
+    function playGame(){
+      document.querySelector("#home").src = "images/dice.gif";
+      document.querySelector("#guest").src = "images/dice.gif";
+    }
+
+    function stopGame(){
+      let homeItem = Math.floor(Math.random()*6) +1; 
+      let guestItem = Math.floor(Math.random()*6)+1;
+      console.log(homeItem, guestItem)
+      home.src = `images/dice-${homeItem}.png`;
+      guest.src = `images/dice-${guestItem}.png`;
+
+      setTimeout(function(){
+        if(homeItem > guestItem){
+          alert("이겼다")
+        }else if(homeItem < guestItem){
+          alert("졌어요")
+        }else{
+          alert("무승부")
+        }
+
+      },500);
+    }
+  </script>
+</body>
+</html>

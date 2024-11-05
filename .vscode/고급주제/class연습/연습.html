@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+ class Person {
+ constructor(name, age){
+  this.name = name;
+  this.age = age;
+ }
+ getIntroducton(){
+  return `저의 이름은 ${this.name}입니다, 나이는 ${this.age}살 입니다`
+ }
+ }
+
+
+ class Employee extends Person {
+constructor(name, age, job){
+super(name, age);
+this.job = job;
+}
+getDetails(){
+  return `직업은 ${this.job}이고 ${this.getIntroducton()}`;
+}
+ }
+
+ const employee = new Employee("홍길동", "30","웹 개발자")
+ console.log(employee.getIntroducton());
+ console.log(employee.getDetails());
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+function test1  (f) {//test1함수가 호출되면 매개변수f에 add또는 multiply함수가 전달된다
+  let result = f(3,4);//add또는 multiply함수가 호출되고 리턴값이 result에 대입된다
+  console.log(result) //result를 출력
+}
+
+function add(a, b){//더하기 연산을 하는 add함수 생성
+return a + b;
+}
+
+//곱하기 연산을 하는 multiply함수 생성
+function multiply(a,b){//test1함수를 호출한다, 이때 파라미터로 add함수가 전달
+  return a * b;
+}
+
+test1(multiply); //test1함수를 호출, 파라미터로 multiply함수를 전달
+  </script>
+</body>
+</html>

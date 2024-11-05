@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>페이지의 스크롤 양 표시</title>
+  <style>
+    /*#bar를 하늘색으로 설정*/
+		#bar {
+		  background-color: #0bd;
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  height: 10px;
+		  width: 100%;
+		}
+		article {
+		  max-width: 800px;
+		  margin: auto;
+		  padding: 2rem;
+		  line-height: 1.8;
+		}
+		h2 {
+		  margin: 2rem 0 1rem;
+		}
+  </style>
+</head>
+<body>
+  <div id="bar"></div>
+
+  <article>
+    <h1>은하철도의 밤</h1>
+    <p>미야자와 겐지</p>
+
+    <h2>1. 오후 수업</h2>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium voluptatum culpa libero, commodi nobis est hic explicabo labore maxime quos dignissimos pariatur alias tempora quas non tenetur vero minus ratione.
+    Itaque quibusdam eaque optio, voluptatum debitis consequatur illo ducimus labore dicta neque dolores vel laboriosam, placeat cumque facilis nisi odit non, inventore adipisci necessitatibus amet officia. Magnam unde laboriosam tempora!
+    Blanditiis alias in doloribus optio suscipit, quibusdam obcaecati, consequatur quaerat ipsam aut non eveniet odio accusamus tenetur. Doloremque, inventore obcaecati. Facilis inventore odio libero temporibus aliquid laborum ducimus labore quasi?
+    Explicabo provident, vel corporis doloribus error eaque! Ut, culpa. Obcaecati architecto dolor libero maxime, quos, nobis magnam animi quidem autem corrupti ipsam deleniti nihil error. Eos suscipit ad vel facere?
+    Maiores, doloremque sunt culpa id praesentium repellat perspiciatis pariatur totam sed repellendus iure ipsum autem fugit numquam explicabo itaque, veniam esse corporis dolorum, aliquid ipsa mollitia laudantium quibusdam! Iste, ducimus!
+    Maiores vel, sunt perferendis mollitia ratione similique, veniam earum accusamus assumenda excepturi provident sequi. Praesentium asperiores laborum ducimus quibusdam error vel quisquam perferendis. Deserunt cum velit consequatur, repellat alias provident.
+    Modi suscipit iste animi possimus quia deserunt accusamus impedit numquam. Ea amet maiores hic eos repudiandae temporibus ipsum consectetur, est voluptas nobis id vero incidunt eaque soluta illum nam repellat!
+    Omnis, ipsam qui! Veniam laboriosam a obcaecati dignissimos doloremque nulla, voluptate perspiciatis architecto asperiores accusantium qui libero totam doloribus non quisquam eos id eum modi. Excepturi architecto modi deleniti sit?
+    Temporibus incidunt quo qui, cumque dolorum eligendi laborum, odio est quis quidem eum tempora velit. Cum minus, aperiam, atque, fugiat ad laborum quod a nostrum commodi in pariatur vel. Explicabo!
+    Sed animi nam soluta id incidunt dolorum. Cupiditate iure error alias ab omnis, aliquam exercitationem numquam tempora odio ipsa excepturi? Ullam voluptatibus pariatur aperiam assumenda provident inventore molestias quos fugiat!</p>
+
+    <h2>2. 활판 인쇄소</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nesciunt vero dolor optio architecto nemo blanditiis, odit vitae distinctio ipsum odio rerum? Deleniti dolor saepe, accusantium quaerat delectus ipsum nisi.
+    Quas ex culpa enim commodi asperiores omnis tempora ullam ipsa, officia eveniet repellat distinctio ratione a totam nostrum. Eveniet, animi! Molestias voluptates provident accusamus praesentium necessitatibus fuga est porro possimus!
+    Maxime est consectetur temporibus doloribus magnam omnis at pariatur suscipit sed reprehenderit! Aliquam delectus ex reprehenderit, labore doloribus voluptatibus quaerat eum hic sit dolor placeat nobis illo quam numquam rem.
+    Quia cum aspernatur inventore, in iure vero explicabo nihil architecto minus possimus optio deserunt assumenda! Ad expedita, temporibus doloribus recusandae soluta magni fugiat ratione hic esse, quas sapiente. Optio, officia.
+    Numquam vitae eos et libero eligendi labore velit nostrum cupiditate. Hic architecto praesentium fugiat placeat ab inventore minima veritatis, voluptate magni quaerat optio sit id accusamus fugit ipsum. Placeat, nemo?
+    Placeat distinctio illo accusantium asperiores! Fugit harum consequuntur, molestias non ex, totam corrupti veniam aliquid recusandae, atque adipisci dolores nam accusamus natus labore beatae? Magni deleniti eveniet fugiat sint placeat.
+    Modi facere nulla deserunt laborum nemo ad voluptas adipisci. Odio ducimus accusantium deleniti! Exercitationem reiciendis eius incidunt voluptas, tempore ducimus. Ipsum optio neque officiis similique omnis atque dolor modi nulla.
+    Debitis iste amet similique, non praesentium doloremque at delectus laborum sunt est dicta nemo nihil voluptates ipsa impedit, consequatur repellendus possimus deleniti voluptate assumenda obcaecati. Perspiciatis illum eius voluptatibus magni?
+    Quas debitis, rem, architecto delectus quasi et dicta assumenda eaque fugiat doloribus facere, est veritatis magni omnis. Itaque, quod. Temporibus ea suscipit odio fugiat aliquid dolores id consequatur expedita nihil?
+    Expedita, nulla commodi. Temporibus sit neque quos expedita soluta. Aliquam ullam ducimus iste sint necessitatibus voluptate doloremque praesentium voluptates, ea similique unde architecto illo reprehenderit ab eveniet labore assumenda provident?</p>
+
+    <h2>3. 집</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic veniam doloremque mollitia architecto qui doloribus error ad vitae neque. Modi, facere ad. Ipsum numquam perspiciatis a, tempore reiciendis harum ipsam.
+    Nostrum, dolorum iste nobis adipisci unde corrupti dolor dicta est voluptatibus laboriosam ducimus placeat blanditiis perferendis laudantium non et, voluptas ipsa quibusdam consequatur porro rem deleniti officiis distinctio excepturi! Commodi.
+    Eum minus tempora sunt, nisi beatae ab, ut, adipisci tenetur quo modi asperiores doloremque sequi nemo earum. Perspiciatis beatae nam aut at assumenda possimus voluptatum vero, repudiandae, ullam nemo porro?
+    Qui reiciendis laudantium modi labore rem expedita eos libero impedit minima totam obcaecati, repellendus nostrum praesentium ipsa officia quasi provident harum sunt. Labore voluptatum illum necessitatibus, itaque rerum perferendis delectus?
+    Saepe culpa omnis facilis similique illum. Doloribus, natus dicta quisquam ad beatae omnis facilis quaerat dolorum deleniti, assumenda culpa sit voluptatibus molestiae enim blanditiis aspernatur officiis corporis vitae non nulla?
+    Eum eaque eveniet aspernatur nam eius obcaecati excepturi tempore vel, explicabo placeat sunt quod numquam rem, atque ab adipisci? Fugit itaque sit voluptas, commodi officia suscipit autem debitis delectus adipisci.
+    Mollitia, quidem. Quos, officiis. Assumenda iusto nulla eaque quia rerum, iste natus, ut odit quo ex placeat expedita vel inventore dolores voluptatum veniam enim commodi. Autem perferendis voluptas ullam quia.
+    Totam culpa laborum quo sed cupiditate molestiae eligendi! Ex accusantium non fugit quidem nemo consequuntur quasi eius iste nam illo distinctio, consectetur libero a quia deserunt odio modi saepe quas?
+    Nam delectus asperiores id voluptates nulla distinctio, necessitatibus eos quibusdam pariatur vero doloremque dolor, soluta ipsa magnam quasi, consequuntur earum voluptatem provident. Ipsa aliquam facere ut, architecto fuga eum fugit.
+    Reiciendis, ea, porro architecto iure, non quos nihil placeat modi veniam repudiandae eius. Officiis officia quasi, temporibus beatae ut explicabo vitae tempore, minus blanditiis dolore nulla ad in neque laudantium?</p>
+
+    <h2>4. 켄타우루 축제의 밤</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam pariatur provident illum, voluptates, soluta quas quae sapiente, eaque itaque aut nam accusantium vel placeat ullam. Doloremque ad laborum placeat. Deleniti.
+    Incidunt id animi dolores vero repellendus assumenda magni impedit cupiditate at tempore, voluptas dolorum culpa libero excepturi aperiam est recusandae sapiente. Eligendi facilis atque sed recusandae dolorum consectetur, excepturi tenetur!
+    Architecto quos assumenda expedita fuga eveniet quas aspernatur odit molestiae autem! Consequuntur reprehenderit tempore aperiam autem magnam reiciendis perferendis harum illum fugiat, accusantium quo perspiciatis qui non consectetur, vel facere.
+    Itaque fugit, voluptas sint provident quisquam animi quod voluptatum iste facilis, ratione dolor sunt, dolores perspiciatis et ut minus labore. Asperiores, eius nobis! Harum voluptatibus aliquid magni quos saepe sit.
+    Aliquid animi accusamus est quo temporibus placeat architecto iure sed vero, eum modi. Provident, est incidunt veniam doloribus, eaque cupiditate id, quaerat natus quibusdam rerum eligendi accusamus odit ad delectus.
+    In suscipit eos officiis? Aperiam consequuntur nulla voluptate eum recusandae ea repudiandae porro eos! Libero maxime corrupti, molestias mollitia neque ab tempora, a facere et fugit itaque delectus excepturi obcaecati.
+    Nam esse aperiam iusto porro veritatis dignissimos sint at soluta fugit eum, qui ipsam nesciunt distinctio fugiat quae! Iste quam sed, enim dolorem eos libero! Harum qui assumenda itaque illum.
+    Eaque ipsam sed nihil quibusdam iste praesentium provident perspiciatis nam, alias quisquam explicabo, ut iusto aspernatur atque? Excepturi quo similique ea voluptatem architecto. Minus dignissimos provident beatae culpa eligendi quas.
+    Exercitationem dolor quasi totam, ad nesciunt numquam id nobis ratione, libero, quibusdam dolorum ex doloremque eligendi! Assumenda veniam, eligendi, sunt officiis, consequuntur nesciunt architecto sequi fugit ullam ipsam soluta consectetur!
+    Enim itaque reprehenderit dignissimos ex qui atque voluptatem vero maiores iste voluptas, eaque ut totam laboriosam labore nam, eveniet ipsum consequuntur ipsa perspiciatis minima temporibus! Sapiente voluptas temporibus tempore quibusdam.</p>
+  </article>
+  <script>
+ const getScrollPercent = () => {
+  //스크롤이동값
+  const scrolled = window.scrollY;
+  const pageHeight = document.documentElement.
+  scrollHeight; //scrollHeight = 해당 요소에 숨겨져 있는 요소의 높이를 포함한 총 높이
+//표시영역 높이
+const viewHeight = document.documentElement.
+clientHeight;
+//clienheight로 표시영역의 높이를 구할 수 있다.
+
+  //스크롤한 비율(스크롤 이동값 / (페이지 전체 높이 -표시 영역 높이) * 100)
+
+const percentage = scrolled / (pageHeight - viewHeight) * 100;
+console.log(percentage) 
+
+document.querySelector('#bar').style.width =`${percentage}%`;
+
+}
+
+ window.addEventListener('scroll', getScrollPercent);
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        border: 1px solid black;
+        width: 1000px;
+        height: 200px;
+      }
+
+      div {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1 id="text">Hello, world!</h1>
+    </div>
+    <div>
+      <label>글자 색상 선택</label>
+      <select class="color">
+        <option value="black">검은색</option>
+        <option value="yellow">노란색</option>
+        <option value="blue">파란색</option>
+      </select>
+      <label>배경 색상 선택</label>
+      <select class="background">
+        <option value="black" style="background-color: black">검은색</option>
+        <option value="yellow" style="background-color: yellow">노란색</option>
+        <option value="gray" style="background-color: gray">회색</option>
+      </select>
+      <button onclick="applyColors()">적용</button>
+    </div>
+
+    <script>
+      function applyColors() {
+        var selectedTextColor = document.querySelector(".color").value;
+
+        var selectedBackgroundColor =
+          document.querySelector(".background").value;
+
+        document.getElementById("text").style.color = selectedTextColor;
+
+        document.body.style.backgroundColor = selectedBackgroundColor;
+      }
+    </script>
+  </body>
+</html>

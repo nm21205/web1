@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: antiquewhite;
+    }
+    .red{
+      color: red;
+    }
+    .blue {
+      color: blue;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="box red">
+hello world
+  </div>
+  <script>
+    const box = document.querySelector('.box');
+    console.log(box.className); 
+    //..class 어트리뷰트 값을 취득
+    box.className = box.className.replace("red","blue");
+
+    console.log(box.classList)
+
+    box.classList.replace('blue',"red");
+    //클래스 추가
+    box.classList.add("foo");
+    //클래스 제거
+    box.classList.remove('foo');
+    //인수로 전달한 index에 해당하는 클래스를 반환
+    console.log(box.classList.item(0))//"box"
+    //인수로 전달한 문자열과 일치하는 클래스가 포함되어 있으면 true없으면 fasle를 반환
+    box.classList.contains('box'); //true
+    box.classList.contains('foo'); //false
+    
+    box.classList.toggle('foo');//클래스가 없으면 추가 있으면 제거
+  </script>
+</body>
+</html>

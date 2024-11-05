@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const temperString ="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    //7의 배수인 순번의 글자를 *로표시
+//tempString 변수의 문자의 갯수만큼 반복
+    for(let i=0; i < temperString.length; i++){
+      if(i%7 !== 0 || i === 0 ){//i가 7의 배수가 아니면 문자를 출력
+      document.write(temperString[i])
+      }else{//i가 7의 밴수면 *를 출력
+      document.write("*");}
+    }
+  </script>
+</body>
+</html>

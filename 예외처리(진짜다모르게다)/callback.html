@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>callback</title>
+</head>
+<body>
+  <script>
+   function increaseAndPrint(n, callback){
+    //n매개변수를 숫자를 전달 받음
+    setTimeOUT(() => {
+      //1초 후에 숫자 n에 1을 더해서 increased 변수에 할당
+      const increased = n + 1;
+      console.log(increased);
+      if(callback){
+        callback(increased)//콜백 함수 호출, 인자로incresed 변수값을 전달
+      }
+    },1000)
+   }
+   
+   inxcreaseAndPrint(0, (n) => {
+    incresedAndPrint(n, n => {
+      increaseAndPrint(n, n => {
+        increaseAndPrint(n, n => {
+          increaseAndPrint(n, n => {
+            console.log("끝!")
+          })
+        })
+      })
+    })
+   })
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reuqestAnimationFrame</title>
+</head>
+<body>
+  <canvas class="canvas" width="600" height="400" style="background: #eee;">
+    이브라우저는 캔버스를 지원하지 않습니다.
+  </canvas>
+  <script>
+    const canvas = document.querySelector(".canvas");
+    const ctx = canvas.getContext("2d");
+
+    let xPos = 10; //x위치 값을 담을 변수
+    let count = 0;
+    let timerId; //timerID변수 생성
+    function draw(){
+      count++;
+      if(count % 30 === 0){//count 값이 30의 배수일때만 실행
+
+      
+      //함수가 호출될때마다 clearRect로 캔버스안의 도형을 지워 줍니다.
+      ctx.clearRect(
+        0,0, canvas.width, canvas.height
+      )
+      ctx.beginPath();
+      ctx.arc(xPos, 150, 5, 0, Math.PI*2, false);
+      ctx.fill();
+      //xPos값을 1씩 추가
+      xPos += 10;
+    }
+     //프레임 유실이 없고, 최저화된 애니메이셔 효과를 만들어 줌, 기본적으로 콜백의 수는 1초에 60회 지만 브라우저 성능에 따라 달라질 수 있습니다.
+     timerId = requestAnimationFrame(draw);
+      if(xPos >= canvas.width-10) cancelAnimationFrame(timerId)//xPos값이 canvas의 넓이 -10보다 크ㄱ거
+  }
+    draw();//draw함수 호출
+
+    //canvas요소에 클릭시 애니메이션 종료
+
+    canvas.addEventListener("click",() => {
+      cancelAnimationFrame(timerId)
+    })
+  </script>
+</body>
+</html>

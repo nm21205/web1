@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //숫자간결하게 나타내기
+    const views =5457553;
+    //numberFormat()의 첫번째 인수로 언어선택(ko,en등) 또는 navigater.languge로 브라우저에서 설정한 언어를 선택할 수 있음, 두번째 인자로 옵션 전달
+    const formatter = new Intl.NumberFormat("ko-KR", {
+      notation:'compact',
+      style:"currency",
+      currency:"KRW"
+    });
+    document.write(formatter.format(views) + "<br>");
+
+    //상대시간 나타내기
+    const formatter2 = new Intl.RelativeTimeFormat('ko',{
+      //언어를 ko로 설정하면 내일, 모레, 어제, 그저께로 표현됨
+      numeric : 'auto'
+    })
+
+    //기준을 day, hour, minute, second, month, quarter(분기)로 설정 할 수 있음
+    document.write(formatter2.format(1,'day')+ "<br>");// 하루 뒤
+    document.write(formatter2.format(2,'day')+ "<br>");// 이틀 뒤
+    document.write(formatter2.format(-1,'day')+ "<br>");// 하루 뒤
+    document.write(formatter2.format(-2,'day')+ "<br>");// 하루 뒤
+
+    //지나간 날짜 계산하기
+    const today = new Date(); //현재 시간정보
+    const started = new Date(2024,9,1)//지난 날짜정보
+    const daysPassed = Math.ceil((started-today) / (1000*60*60*24))
+
+    document.write(formatter2.format(daysPassed,'day'));//
+
+
+    const date = new Date(2019,10,12);
+    console.log(date);
+    document.write(new Intl.DataTimeFormat('en-US').format(data) + "<br>")
+
+
+    document.write(
+      data.toLocaleDateString('ko'),{
+      minite: 'numeric',
+      hour: 'numeric',
+      day: 'numeric',
+      month:'long',
+      year: 'numeric',
+      weekday:'short',
+      })
+
+      </script>
+</body>
+</html>

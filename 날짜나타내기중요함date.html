@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style></style>
+<body>
+  <script>
+    //date 객체를 생성
+    let today = new Date();
+    console.log(today)
+   
+ let weekday = [
+   'Sunday',
+   'Monday',
+   'Tuesday',
+   'Wednesday',
+   'Thursday',
+   'Friday',
+   'Saturday'     
+  ]
+    //Date객체의 다양한 메소드를 이용하여 현재 시각 및 날짜 정보를 가져옵니다
+    document.write("연도: " + today.getFullYear()+ "<br>");
+    document.write("월: " + (today.getMonth()+1)+ "<br>");
+    document.write("일: " + today.getDate ()+ "<br>");
+    document.write("요일: " + weekday[today.getDay ()] + "<br>");
+    //요일에서 일요일이 0이므로 4가 나오는이유가 오늘이 목요일이라 그럼
+    document.write("시: " + today.getHours()+ "<br>");
+    document.write("분: " + today.getMinutes()+ "<br>");
+    document.write("초: " + today.getSeconds()+ "<br>");
+
+  </script>
+</body>
+</html>

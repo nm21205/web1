@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const scores = [50, 75, 100, 25, 0];
+      const ratios = scores.map(score => score / 100);
+      console.log(ratios)
+
+
+
+      //문자열 길이
+
+      const strings = ['apple', 'banana','cherry'];
+      const lengths = strings.map(str => str.length);
+      console.log(lengths)
+
+      //객체의 특정 속성 추출
+
+
+      const users = [
+ { name: "Alice", age: 25 },
+ { name: "Bob", age: 30 },
+ { name: "Charlie", age: 35 }
+];
+
+const names = users.map(user => user.name)
+console.log(names)
+
+
+
+  </script>
+</body>
+</html>

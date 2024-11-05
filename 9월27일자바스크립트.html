@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>laszy</title>
+</head>
+<body>
+<script>
+  let a = 0.1, b = 0.2;
+  //좌변이 true면 좌변을 반환, 좌변이 false면 우변을 반환
+console.log(a||b);
+console.log(b||a);
+
+  //좌변이 false면 좌변을 반환, 좌변이 true면 우변을 반환
+console.log(a&&b);
+console.log(b&&a);
+
+//{} = 객체를 의미한다.
+let person1 = {name :"홍길동"}, person2 = null;
+console.log(person1 && person1.name);
+console.log(person2 && person2.name)
+
+
+let s = "123.456px"
+let c = parseInt(s);
+console.log(c)
+c = parseFloat(s);
+console.log(c)
+c = Number(s);
+console.log(c)
+
+//반올림-round
+console.log(Math.round(10/3))
+console.log(Math.round(10/4))
+//랜덤 숫자 생성
+
+console.log(Math.floor(Math.random()*6+1))
+
+
+for (let i = 0; i < 20; ++i) {
+  let a = Math.floor(Math.random() * 6 + 1);
+  console.log(a);
+}
+
+</script>
+</body>
+</html>

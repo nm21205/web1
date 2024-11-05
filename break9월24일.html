@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>브레이크</title>
+</head>
+<body>
+  <script>
+    let i = 0;
+    for(;;){//무한 루프
+      ++i;
+      if(i%2 == 1) continue;//i를 2로 나눈값이 1이면(i가 홀수면) 실행하지 않는다.
+    
+      console.log(i);
+      if(i >=20) break;//반복문을 종료해라
+      }
+  </script>
+</body>
+</html>

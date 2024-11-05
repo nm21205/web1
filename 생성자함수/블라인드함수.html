@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+        function getThisBinding(){
+      return this;
+    }
+    const thisArg = {a:1};
+
+    //bind메서드를 첫 번째 인수로 전달한 thisArg로 this바인딩이 교체된 getThisBinding함수를새롭게 생성해 반환한다.
+
+    console.log(getThisBinding.bind(thisArg)); //getThisBinding
+
+    console.log(getThisBinding.bind(thisArg)())
+    
+    //bind메서드는 메서드의 this와 메서드 내부의 중첩함수 또는 콜백함수의 this가 불일치하는 문제를 해결하기 위해 사용된다.
+    const person = {
+      name: 'Lee',
+      foo(callback){
+        //bind메서드로 callback함수 내부의 this 바인딩을 전달
+         setTimeout(callback.bind(this), 100);
+      }
+    }
+
+    person.foo(function(){
+      console.log(`Hi! my name is ${this.name}`)
+      //일반함수로 호출된 콜백 함수 내부의 this는 브라우저 환경에서 window와 같다?
+    })
+  </script>
+</body>
+</html>

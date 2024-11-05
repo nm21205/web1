@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>if문</title>
+  </head>
+  <body>
+    <script>
+      var num = 2;
+      var kind;
+
+      //if문
+
+      if (num > 0) {
+        //num이0보다크면 코드블럭 실행
+        kind = "양수"; //kind변수에 "양수"라느 문자를 할당
+      }
+      document.write(kind + "<br>"); //양수
+
+      num = 0;
+      if (num > 0) {
+        kind = "양수";
+      } else if(num<0){//num이 0보다 작으면 kind에 음수가 저장
+        kind = "음수"; 
+      } else {//모든 조건식이 거짓이면 kind변수에 "영"을 저장
+    kind = "영";  
+    }
+      document.write(kind + "<br>"); //영
+    </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body,
+    html {
+      height: 100%
+    }
+
+    .bgimg {
+      background-image: url('./searchbg.jpg');
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      color: white;
+      font-family: "Courier New";
+      font-size: 25px;
+    }
+
+    .topleft {
+      position: absolute;
+      top: 0;
+      left: 16px;
+    }
+
+    .bottomleft {
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+    }
+
+    .middle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    hr {
+      margin: auto;
+      width: 40%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bgimg">
+    <div class="topleft">
+      <p>Logo</p>
+    </div>
+    <div class="middle">
+      <h1>COMING SOON</h1>
+      <hr>
+      <p id="demo" style="font-size:30px"></p>
+    </div>
+    <div class="bottomleft">
+      <p>Some text</p>
+    </div>
+  </div>
+  <script>
+    //카운트다운 날짜를 설정합니다. getTime()메서드로 날짜정보를 밀리세컨드단위의 숫자로 변환
+    let countDownDate = new Date(2024, 9, 10, 14, 53).getTime();
+    //console.log(countDownDate)
+    //1초마다 카운트다운 업데이트
+    let x = setInterval(function(){
+     //오늘 날짜 및 시간 정보를 변수에 할당
+     let now = new Date().getTime();
+
+     //카운트다운 날짜 - 오늘 날짜 = 남은 시간(밀리세컨드 단위로 값이 반환)
+     let distance = countDownDate - now;
+     //console.log(distance)
+     //일, 시간, 분, 초에 대한 시간 계산
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    //#demo인 요소에 결과 표시
+    document.getElementById("demo").innerHTML =`${days}일 ${hours}시간 ${minutes}분 ${seconds}초`
+    //카운트 다운이 완료되면 "이벤트 종료"문자 출력
+    if(distance < 0){
+      clearInterval(x); //setInterval함수를 종료
+      document.getElementById("demo").innerHTML = "이벤트 종료";
+    }  
+  },1000);
+    
+  </script>
+</body>
+
+</html>

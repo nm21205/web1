@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #pic {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 1px 1px 2px black;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="/pic1.jpg" alt="이미지" id="pic">
+  <script>
+    const pic = document.querySelector("#pic");
+    //src속성값에서 뒤에서 5번째 순번의 글자 한글자만 반환
+    let sNum = pic.getAttribute("src").substr(-5,1);
+    console.log(sNum)
+    console.log(sNum)
+
+    let timer = setInterval(gogo, 1000);
+    //gogo함수를 1초에 한번 씩반복 호출
+
+    function gogo(){
+      
+      if(sNum >= 3){//sNum이 3보다 크거나 같을때 실행
+        sNum = 0;//0으로 초기화
+      }
+      sNum++;//sNUM변수를 1씩 증가시킴
+      console.log(sNum)
+      pic.setAttribute("src",`/pic${sNum}.jpg`);
+    }
+    //이미지 요소에 마우스를 올려놔을때
+    pic.addEventListener("mouseenter",function(){
+      clearInterval(timer);
+    })
+
+    pic.addEventListener("mouseleave", function(){
+      timer = setInterval(gogo,1000);
+    })
+  </script>
+</body>
+
+</html>

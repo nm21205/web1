@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+            body {
+              /*버튼정렬용*/
+              margin-top: 20%;
+              text-align: center;
+            }
+            button {
+              background: transparent;
+              border: 0;
+              box-sizing: border-box;
+              padding: 1em 4em;
+            font-size: 1em;
+            font-weight: bold;
+            color: orange;
+            /*자식요소의 border와 겹치기 위해 box-shadow를 border처럼 넣어줌*/
+          box-shadow:inset 0 0 0 2px orange;
+          transition: color 0.25s;
+          position: relative;}
+      button::after,
+      button::before{content: "";
+      position: absolute;
+      box-sizing: border-box;
+      width: 0; height:0;
+      border: 2px solid transparent;
+      /*처음에는 border를 투명색으로 설정*/}
+      /*기준을 다르게 설정*/
+      button::before{top:0, left:0;}
+      button::after{bottom: 0; right:0;}
+
+      /*마우스오버시 색변경*/
+      button:hover{color:skyblue;}
+
+      /*마우스 오버시 가상요소의 width와 height 를 100%설정*/
+      button:hover::before
+      ,button:hover::after
+      {width: 100%; height: 100%;
+      
+      }
+      button:hover::before{
+        top:0; left:0;
+      }
+      button:hover::after{
+        bottom:0; right:0;
+      }
+
+      /*색이채워지는 보더가 그려지는 애니메이션 적용*/
+
+      button:hover::before{border-top-color: skyblue;
+      border-right-color: skyblue;
+    transition: width 0.25s ease-out, height 0.5s ease-out 0.5s;}
+button:hover::after{
+  border-bottom-color:skyblue ;
+  border-left-color:skyblue ;
+  transition:border-color 0s 0.5s,width 0.25s ease-out 0s, height 0.5s ease-out 1.5s;
+}
+    </style>
+  </head>
+  <body>
+    <button>Draw</button>
+  </body>
+</html>

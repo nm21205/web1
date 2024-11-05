@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>애니메이션</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        /*애니메이션 효과*/
+        animation-name: colorChange; /**/
+        animation-duration: 4s; /**/
+        animation-delay: 1s; /**/
+        animation-iteration-count: 3; /**/
+        animation-direction: alternate; /**/
+        animation-timing-function: linear; /*타이밍 제어*/
+      }
+      @keyframes colorChange {
+        from {
+          /*시작 프레임*/
+          background-color: red;
+        }
+
+        to {
+          /*끝 프레임*/
+          background-color: yellow;
+        }
+      }
+      .b1 {
+        margin-top: 10px;
+        /*축약형*/
+        animation: example 5s linear 2s infinite alternate;
+      }
+      @keyframes example {
+        0% {
+          background-color: red;
+          transform: translate(0, 0);
+        }
+        25% {
+          background-color: rgb(186, 233, 15);
+          transform: translate(200px, 0);
+        }
+        50% {
+          background-color: rgb(56, 6, 238);
+          transform: translate(200px, 200px);
+        }
+        75% {
+          background-color: red;
+          transform: translate(0, 200px);
+        }
+        100% {
+          background-color: red;
+          transform: translate(0, 0);
+        }
+      }
+
+   
+/* animation-fill-mde:none;
+forwards:대상은 실행된 애니메이션의 마지막
+keyframe에 의해 설정된 게산된 값을 유지
+backwards :대상은 애니메이션이 실행된 후 첫번째 keyframe에 정의 된 값을 적용
+animation-play-state
+-pause 일시정지,
+-running : 애니메이션 재생 */
+     
+.b2 {animation:scale 2s;
+animation-fill-mode:backwards;
+animation-fill-mode: forwards;}
+
+.b2:hover {animation-play-state:paused;}
+
+@keyframes scale { 0% {
+         width: 100px; height: 100px;
+        }
+        }
+        100% {
+          width:500px; height:500px;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <div class="box b1"></div>
+    <div class="box b2"></div>
+  </body>
+</html>

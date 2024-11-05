@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul,
+      li {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      body {
+        font: 16px/1.5 Arial;
+      }
+      nav > .join {
+        min-width: 1200px;
+        background-color: #333;
+        color: #fff;
+      }
+      .join > .container {
+        justify-content: flex-end;
+      }
+      .container {
+        width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        box-sizing: border-box;
+        display: flex; /*flex적용*/
+      }
+
+      .join ul {
+        display: flex;
+      }
+      .join ul li {
+        margin-left: 40px;
+        padding: 10px 0;
+      }
+
+      .join ul li a:hover{color: gold;}
+      /*하단메뉴*/
+
+      nav> .menu{}
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="join">
+        <div class="container"></div>
+        <ul>
+          <li><a href="">login</a></li>
+          <li><a href="">join us</a></li>
+          <li><a href="">member</a></li>
+        </ul>
+      </div>
+      <div class="menu">
+        <div class="container">
+          <h1>
+            <a href="#">로고?</a>
+          </h1>
+          <ul>
+            <li><a href="#">abuot</a></li>
+            <li><a href="#">new</a></li>
+            <li><a href="#">board</a></li>
+            <li><a href="#">album0</a></li>
+            <li><a href="#">contact</a></li>
+            <li><a href="#">cdddddd</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <script>
+    //특정범위 내의 난수를 생성하는 공식
+    for(let i = 0; i < 30; i++) {
+    math.floor(Math.rangom()*(20 - 10 + 1))+10;
+    console.log(randomInt)
+    }
+    
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자료형연습문제</title>
+</head>
+
+<body>
+  <script>
+    let memberCount = 31;
+    let pageSize = 10;
+
+    //페이지 수를 계산
+    let pageCount = Math.ceil(memberCount / pageSize);
+    document.write(pageCount)
+
+
+    //특정 범위 내의 난수를 생성하는 공식
+    //Math.floor(Math.random() * (max - min + 1)) + min
+    for (let i = 0; i < 30; i++) {
+      let randomInt = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
+      console.log(randomInt)
+    }
+
+    //0~5사이의 임의의 숫자를 생성하고 맞추는 프로그램
+
+    //0~5사이의 임의의 숫자를 생성해서 randomNum에 저장
+    var randomNum = Math.floor(Math.random()*6); 
+    //시도 횟수
+    var trial = 0;
+    //반복문을 실행할지 실행하지 않을지 제어하는 변수
+    var find = false;
+    while (find == false) {//find값이 false일 경우에만 실행
+      //입력받은 값을 predictNum변수에 할당
+      var predictNum = prompt("0~5사이의 숫자를 예측하시오");
+      //입력 시도횟수를 1증시킴
+      trial++;
+      //입력숫자와 랜덤생성한 숫자가 일치하면 실행
+      if (predictNum == randomNum) {
+        //콘솔에 출력
+        console.log("임의의 숫자는 " + predictNum + "입니다.");
+        //find변수를 true로 변경하여 반복문을 종료
+        find = true;
+      }
+      //입력한 값이 생성한 숫자보다 크면 실행
+      else if (predictNum > randomNum) {
+        console.log("예측값이 임의의 숫자보다 큽니다.");
+      }
+      //입력한 값이 생성한 숫자보다 작으면 실행
+      else {
+        console.log("예측값이 임의의 숫자보다 작습니다.");
+      }
+    }
+    //콘솔에 시도한 횟수를 출력
+    console.log(trial + "번 만에 임의의 숫자를 찾았습니다."); 
+  </script>
+</body>
+
+</html>
+</body>
+</html>

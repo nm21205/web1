@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var cars = [,'소형차','중형차','대형차',];
+    cars.unshift('스포츠카');
+    console.log("1." + cars);
+    
+    cars.push('버스');
+    console.log("2."+ cars);  
+
+    // cars[5] ='범퍼카'
+    // console.log("3. "+ cars);
+
+    cars.splice(2,1,"범퍼카");
+    console.log("3. " + cars);
+
+    cars.sort();
+    console.log("4. " + cars);
+    
+  </script>
+</body>
+</html>

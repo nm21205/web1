@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onClick="window.location.reload()">새로고침</button>
+    <script>
+      let x = prompt("성인, 미성년자, 노인 중 입력", "");
+
+      switch (x) {
+        //표현식이 구글이면 구글링크 주소를 url변수에 할당
+        case "성인":
+          result = "1000원";
+          break;
+        case "미성년자":
+          result = "500원";
+          break;
+        case "노인":
+          result = "무료";
+          break;
+        default:
+          alert("잘못입력하셧습니다.");
+          location.reload();//새로고침
+      }
+      document.write(result);
+      
+    </script>
+  </body>
+</html>

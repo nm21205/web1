@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컴포즈패턴</title>
+</head>
+<body>
+  <script>
+    //파이프라인패턴
+
+
+    const pipe = (...functions) => input => functions.reduce((acc,func) => func(acc), input)
+
+    const makeSandWich = bread => pipe(bacon, letteuce, cheese)
+  (bread);
+
+  makeSandWich2("white bread");
+
+  //문자열을 슬러그 형태로 변환하는 함수
+  const log = console.log;
+
+  const title = "Learning Function Composition 1";
+  //1.문자열 - 배열로 변경하는 함수
+  const strToArr = str => str.split("");
+  //2.배열(단어) -> 소문자 변환
+  const toLower = arr => arr.map(w => w.toLowerCase());
+ 
+  //3. 배열 -> 문자열, 여백처리("-")
+  const joinWithDash = arr => arr.join("-");
+
+  //pipe패턴 사영
+  const pipe2 = (...functions) => input => functions.reduce
+ ((acc, fn) => fn(acc), input)
+
+ const slug = pipe2(strToArr, toLower, joinWithDash)(title);
+ log(slug); //learning-function-composition-1
+ </script>
+</body>
+</html>

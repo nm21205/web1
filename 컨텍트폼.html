@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컨텍트폼</title>
+  <style>
+    .container {background-color: #F2F2F2;
+    border-radius: 5px;
+    padding:20px;
+  
+  }
+  input[type=text],
+  select,
+
+  textarea{width: 100%;
+  height: 46px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 6px 0 16px;
+  resize: none;/*텍스트 에어리어 크기조정을 막아버린것(없을때는 켜서 움직이면 움직여짐) */
+}
+
+textarea {height: 200px;
+}
+
+input[type=submit]{
+  float: right;
+  background-color: #4caf50;
+color: #fff;
+border: 0;
+padding: 12px 20px;
+border-radius: 4px;
+cursor: pointer;}
+
+.form::after{
+content:''; display: block; clear: both;}
+input[type=submit]
+:hover {background-color: #45a049;}
+
+select{appearance: none;/*화살표 제거*/
+background: #fff url(/연습문제이미지/bssbg.png)
+no-repeat 99% 50%;/*화살표 이미지 추가*/}
+
+  </style>
+</head>
+<body>
+  <h3>Contact 폼</h3>
+  <div class="container">
+    <form>
+      <label for="fname">이름</label>
+      <input type="text" id="frame" name="firstname"
+      placeholder="이름">
+
+      <label for="lname">성</label>
+      <input type="text" id="lrame" name="lastname"
+      placeholder="성">
+
+      <label for="contry">국적</label>
+      <select id="country" id="country" name="country">
+        <option value="korea">한국</option>
+        <option value="canada">캐나다</option>
+        <option value="usa">미국</option>
+      </select>
+
+      <label for="subject">제목</label>
+      <textarea id="subject" name="subject" placeholder="내용.."></textarea>
+      <input type="submit" value="보내기">
+    </form>
+  </div>
+</body>
+</html>

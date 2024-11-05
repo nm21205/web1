@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var x = 2;
+      var result;
+
+      if(x%2){//값이 1이면 true, 값이 0이면 false
+          result = "홀수";
+      } else {
+        result ="짝수";
+      }
+      console.log(result)
+
+      x = 3;
+      //삼항 조건 연산자
+
+      result = x%2 ? '홀수' : '짝수';
+      console.log(result)
+
+      //경우의 수가 세가지 일 경우
+      var num = 2;
+      //조건문 안에서 0은 false로 취급된다. 정수는 true로 취급된다.
+      var kind = num ? (num > 0 ? "양수" : "음수") : "영";
+      console.log(kind);
+    </script>
+  </body>
+  </html>
+</body>
+</html>

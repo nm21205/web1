@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이벤트위임</title>
+  <style>
+    #fruits {
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #fruits li {
+      width: 100px;
+      cursor: pointer;
+    }
+
+    #fruits .active {
+      color: red;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul id="fruits">
+      <li id="apple" class="active">Apple</li>
+      <li id="banana">Banana</li>
+      <li id="orange">Orange</li>
+    </ul>
+  </nav>
+  <div>선택된 내비게이션 아이템: <em class="msg">apple</em></div>
+  <script>
+    const fruits = document.querySelector('#fruits');
+    const msg = document.querySelector('.msg');
+   //모든 내비게이션 아이템(li)의 부모 요소인 fruits요소에 이벤트를 바인딩 한다.
+   fruits.addEventListener("click", active);
+   //active함수 생성
+   function active({target}){//target은 이벤트가 발생될때 클릭한 객체
+    console.log([...fruits.children])
+    [...fruits.children].forEach(fruit =>{
+      fruit.clasList.toggle(
+        "active", fruit === target);
+        msg.textContent = target.id;
+      )
+    })
+    //[...fruits.children]
+   }
+  </script>
+</body>
+</html>

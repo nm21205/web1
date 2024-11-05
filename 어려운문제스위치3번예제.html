@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let grades = prompt("시험 점수 입력");
+
+    let result = Number(grades)/10;
+
+    //result값을 정수로 변환(소수점 버림)
+
+    result = parseInt(result);
+
+    switch(result){
+ case 10 :
+  case 9 :
+    console.log("A학점")
+    break;
+    case 8 :
+      console.log("B학점")
+      break;
+      case 7 :
+        console.log("C학점")
+        break;
+        default : alert("재수강")
+    }
+
+  </script>
+</body>
+</html>

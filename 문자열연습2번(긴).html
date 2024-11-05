@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let text = "When I find myself in times of trouble Mother M
+ary comes to me Speaking words of wisdom, let it be.";
+
+
+//변수에 모음을 담아 줍니다.
+const vowels = 'aeiou';
+//포지션객체를 만들어서 모든인덱스를 배열로 할당하는방법
+
+
+//문자열의 모든 문자를 순회 합니다.
+for(let vowel of vowels){
+  //모음(vowels)의 순회중인 글자와 text의 순회중인 글자가 일치하면 text의
+ // 순회중인 글자의 순번을 index에 할당
+ let index = text.indexOf(vowel);
+ //index를 출력
+ console.log(index);
+}
+  </script>
+</body>
+</html>

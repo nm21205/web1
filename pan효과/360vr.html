@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="slideList"></div>
+    <input type="range" id="slider" max="100" min="0" value="0" />
+    <script>
+      //미이지를 slidelist에 자식요소로 추가
+
+      for (let i = 0; i < 120; i++) {
+        const p = document.createElement("p");
+        const img = document.createElement("img");
+        img.setAttribute("src", `images/360VR/Picanto_Green_${i}.jpg`);
+        img.setAttribute("alt", `image${i}`);
+        p.appendChild(img);
+        document.querySelector("#slideList").appendChild(p);
+      }
+
+      const imageList = document.querySelectorAll("#slideList > p");
+      //슬라이더 요소를 선택
+      const slider = document.querySelector("#slider");
+      imageList.forEach((img, idx) => {
+        img.style.display = "none";
+      });
+      imageList[0].style.display = "block";
+
+      let end = imageList.length - 1;
+
+      slider.addEventListener("input", () => {
+        let sliderValue = slider.value;
+        let imgIndex = Math.round((sliderValue / 100) * end);
+       // console.log(imgIndex);
+
+        //모든 이미지 숨기기
+        imageList.forEach((img) => {
+          img.style.display = "none";
+        });
+        //해당 인덱스의 미지를 표시합니다.
+        imageList[imgIndex].style.display = "block";
+      });
+      //슬라이더에 이벤트 리스너 추가.
+      //초기이미지 표시
+    </script>
+  </body>
+</html>

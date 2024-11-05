@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        background-color: #fe9;
+        background-repeat: no-repeat;
+        width: 300px;
+        height: 80px;
+        margin-bottom: 12px;
+      }
+      .one {
+        background-image: url(/dd/spot.png);
+        background-position: 10px bottom; /*x춧, y축*
+/*축약형, 이거대문에 지금 반복되는거임*/
+        background: url(/dd/spot.png) 10px bottom;
+      }
+      .two {
+        background-image: url(/dd/spot.png);
+        background-position: 3em 50%;
+      }
+      .three {/*여러 배경이미지의 위치속성을 쉼표로 구분해서 설정한다*/
+        background-image: url(/dd/spot.png), url(/dd/logo.png);
+        background-position: 0 0, center;
+      }
+    
+    </style>
+  </head>
+  <body>
+    <div class="one">example one</div>
+    <div class="two">example two</div>
+    <div class="three">example three</div>
+  </body>
+</html>

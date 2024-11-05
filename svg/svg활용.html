@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/103d787f99.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+    <style>
+      article {
+        width: 500px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+        padding: 50px;
+      }
+      article svg path {
+        fill: transparent;
+        stroke: red;
+        stroke-width: 3;
+        /*점섬 만들기*/
+        stroke-dasharray: 1520;
+        stroke-dashoffset: -1520;
+        transition: all 2s cubic-bezier(.17,.67,.44,-0.19);
+      }
+      article:hover svg path {
+        stroke-dashoffset: 0%; /*점선의 위치를 초기위치로 이동시켜 선이 그려지는 애니메이션을 만들어줌*/
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path
+          d="M162.4 6c-1.5-3.6-5-6-8.9-6l-19 0c-3.9 0-7.5 2.4-8.9 6L104.9 57.7c-3.2 8-14.6 8-17.8 0L66.4 
+        6c-1.5-3.6-5-6-8.9-6L48 0C21.5 0 0 21.5 0 48L0 224l0 22.4L0 256l9.6 0 364.8 0 9.6 0 0-9.6 0-22.4 0-176c0-26.5-21.5-48-48-48L230.5 0c-3.9 0-7.5 2.4-8.9 6L200.9 57.7c-3.2 8-14.6 8-17.8 0L162.4 6zM0 288l0 32c0 35.3 28.7 64 64 64l64 0 0 64c0 35.3 28.7 64 64 64s64-28.7 64-64l0-64 64 0c35.3 0 64-28.7 64-64l0-32L0 288zM192 432a16 16 0 1 1 0 32 16 16 0 1 1 0-32z"
+        />
+      </svg>
+    </article>
+  </body>
+</html>

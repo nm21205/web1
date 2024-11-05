@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다운내비</title>
+  <style>
+    *{margin: 0;
+    padding: 0;
+  box-sizing: border-box;}
+
+    ul,li {list-style: none;}
+    a{text-decoration: none;
+    color: inherit;}
+    nav{min-width: 1200px;
+    background-color: orange;}
+
+    nav > .container {width: 1200px;
+    margin: 0 auto;
+  display: flex;
+padding: 0 10px;
+justify-content: space-between;
+align-items: center;
+color: #fff;
+position: relative;
+}/*여기다 포지션을 줘야 1200px만큼의 넓이에 줄수있음.*/
+
+.logo {font-weight: bold;}
+.gnb {display: flex;}
+
+.gnb >li > a{display: block;
+  padding:10px 0;}
+  .gnb >li {margin-left: 80px;}
+.sub {position: absolute;
+width: 100%;
+background-color: #999;
+left:0;
+padding: 20px;
+display:flex;
+justify-content: space-between;
+display: none;}
+
+.sub > .thumbs {display: flex;
+gap :20px}
+
+.sub > .thumbs > img {display:block;}
+.sub > a { font-size: 14px;
+line-height: 1.8;}
+
+.gnb >li:hover .sub{display: flex;}
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+<div class="logo"><a href="">LOGO</a></div>
+<ul class="gnb">
+  <li>
+    <a href="#">menu1</a>
+    <div class="sub">
+      <ul>
+<li><a href="#">menu1-1</a></li>
+<li><a href="#">menu1-2</a></li>
+<li><a href="#">menu1-3</a></li>
+</ul>
+<ul class="thumbs">
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+
+</ul>
+    </div>
+  </li>
+  <li>
+    <a href="#">menu2</a>
+    <div class="sub">
+      <ul>
+<li><a href="#">menu2-1</a></li>
+<li><a href="#">menu2-2</a></li>
+
+</ul>
+<ul class="thumbs">
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+
+</ul>
+    </div>
+  </li>
+  <li>
+    <a href="#">menu3</a>
+    <div class="sub">
+      <ul>
+<li><a href="#">menu3-1</a></li>
+<li><a href="#">menu3-2</a></li>
+<li><a href="#">menu3-3</a></li>
+</ul>
+<ul class="thumbs">
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+
+
+</ul>
+    </div>
+  </li>
+  <li>
+    <a href="#">menu4</a>
+    <div class="sub">
+      <ul>
+<li><a href="#">menu4-1</a></li>
+<li><a href="#">menu4-2</a></li>
+
+</ul>
+<ul class="thumbs">
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+  <li><img src="https://picsum.photos/80" alt=""></li>
+
+</ul>
+    </div>
+  </li>
+</ul>
+    </div>
+  </nav>
+</body>
+</html>

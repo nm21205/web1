@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정렬연습8</title>
+  <style>
+    *{margin: 0;
+    padding: 0;
+  box-sizing: border-box;
+}
+
+ul,li{list-style: none;}
+    section {width: 100%;
+    height: 760px;
+  background-image:url(/홈페이지구현/img/member3.jpg);
+background-position: center;
+background-size: cover;
+min-width:1200px;
+color: #fff;
+}
+
+section > .container {width:1200px;
+margin: 0 auto;
+}
+
+section .title {padding-top: 160px;
+text-align: center;
+}
+
+.title > p {font-size: 14px;
+margin: 40px 0 80px;
+}
+
+section .list {display:flex;}
+
+.list > li {width: 33.333%;
+display: flex;
+background-color: #333;
+padding: 40px 10px;
+gap:20px;
+position: relative;}
+
+.list > li > .txt > h2 {font-size: 14px;
+line-height:1.5;}
+
+.list > li > .txt > p {font-size: 14px;
+line-height: 1.5;
+margin-top: 10px;
+}
+/*마우스오버효과*/
+.list > li:hover{background-color:#999;
+color: #111;
+cursor: pointer;}
+
+.list > li:hover::after {content: "";
+position: absolute;
+width: 0;
+height: 0;
+border: 10px solid transparent;
+border-bottom-color:#999;
+top:-20px;
+left: calc(50% - 10px);}
+
+
+
+  </style>
+</head>
+<body>
+  <section>
+    <div class="container">
+      <div class="title">
+       <h1>Divsion title</h1>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos nesciunt <br>
+          aesentium delectus aut odio consae neque sapiente. Earum!</p>
+      </div>
+      <ul class="list">
+        <li>
+          <img src="https://picsum.photos/180/200" alt="">
+          <div class="txt">
+            <h2>DESCRIPTION</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic impedit il
+              lo nobis voluptatem cor</p>
+
+          </div>
+        </li>
+        <li>
+          <img src="https://picsum.photos/180/200" alt="">
+          <div class="txt">
+            <h2>DESCRIPTION</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic impedit il
+              lo nobis voluptatem cor</p>
+              
+          </div>
+        </li>
+        <li>
+          <img src="https://picsum.photos/180/200" alt="">
+          <div class="txt">
+            <h2>DESCRIPTION</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic impedit il
+              lo nobis voluptatem cor</p>
+              
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

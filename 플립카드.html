@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+  .flip-card {width: 300px;
+  height:300px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;/*깊이감 생성*/
+  }
+ /*이요소는 앞면과 뒷면을 배치하는데 필요합니다*/
+ .flip-card-inner{position: relative;
+ width: 100%;
+ height: 100%;
+ text-align:center;
+ transition: transform .8s;/*transform속성이 변경되면 0.8초에 걸쳐서 서서히 변경*/
+transform-style: preserve-3d;
+/*이거 이번에 처음배우는 것임 transform-style 속성은 요소의 자식요소가 입체적인 3d공간에 배치될지, 요소의 표면에 평평하게
+묘사할 지를 결정 합니다. 기본값 = flat preserve-3d를 지정하며 3d공간에 배치 됩니다.
+*/ 
+
+}
+/*플립 상자 컨테이너 위로 마우스를 이동하며 수펴응로 뒤집힘*/
+.flip-card:hover .flip-card-inner {transform:rotateY(180deg);}
+.flip-card-front, .flip-card-back {position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;/*요소의 뒷면을 투명하게 가려줌*/}
+
+
+.flip-card-back{transform: rotateY(180deg);
+background-color: skyblue;
+color: #fff;}
+</style>
+</head>
+<body>
+  <div class="flip-card">
+    <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="https://picsum.photos/id/237/300" alt="">
+    </div>
+    <div class="flip-card-back">
+      <h1>john doe</h1>
+      <p>architect &amp; Engineer</p>
+      <p>we love that dog</p>
+    </div>
+  </div>
+  </div>
+</body>
+</html>

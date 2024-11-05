@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /*float소겅을 적용한 자식요소의 높이를 부모요소에 인식하느 방법*/
+       .parent{background-color: #ccc;
+      /*프롯 속성이 적용된 자식요소의 높이ㅡㄹ 인시시킴 클리어픽스핵 들어가보셈*/
+        overflow:hidden;}
+    .parent>.child{width: 200px;height: 200px;
+    float: left;}
+    .parent> .ch1 {background-color: #fc0;}
+    .parent> .ch2 {background-color: #f60;}
+    .parent> .ch3 {background-color: #f00;}
+    .uncle {background-color: #00f;
+    width:200px;
+  height: 200px;
+}
+    
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child ch1">A</div>
+    <div class="child ch2">B</div>
+    <div class="child ch3">C</div>
+    <!--float해제하여 새롭게 줄 바꿈을 시작해줍니다-->
+    <!-- <div style="claer:both">fffffff</div> -->
+  </div>
+  <div class="uncle">삼촌</div>
+</body>
+</html>

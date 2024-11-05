@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #myList > li{
+    padding: 5px;
+}
+#myList > li:hover{
+    cursor: pointer;
+    color: #ddd;
+    background-color: lightcoral;
+}
+
+button{
+    color: #333;
+    padding: .5em 1em;
+    text-align: center;
+    font-size: 1em;
+    border: none;
+    background-color: lightblue;
+    box-shadow: 2px 2px 2px #888;
+}
+button:hover{
+    cursor: pointer;
+    color: #fff;
+    box-shadow: -2px -2px 2px #888;
+}
+</style>
+<body>
+  <ol id="myList">
+      <li>window.open() 기본형</li>
+      <li>화면 이동</li>
+      <li>팝업창 열기</li>
+      <li>팝업창 제어</li>
+      <li>
+          <a href="http://www.naver.com" target="_blank">네이버</a>
+      </li>
+  </ol>
+
+  <button type="button">윈도우 열기</button>
+  <button type="button">윈도우 닫기</button>
+  <script>
+    const lists = document.querySelectorAll("#myList > li");
+    console.log(lists)
+
+    //window.open(URL, name, specs, replace);
+    lists[0].onclick = function(){
+      window.open();
+    }
+    lists[1].onclick = function(){
+      window.open('https://www.google.co.kr','_self');
+    }
+
+    lists[2].onclick = function(){
+      window.open('https://m.daum.net','','width=400, height=400');
+    }
+    lists[3].onclick = function(){
+      let win = window.open('','','width=200, height=200');
+      win.document.write('<h>새창입니다</h1>');
+      win.opener.document.write('<h>부모창입니다</h1>')
+        }
+
+        //윈도우 닫기
+        let win;
+        const btn = document.querySelectorAll("button");
+
+        //창열기
+        btn[0].addEventListener('click', openwindow);
+        function openwindow(){
+          win = window.open('','','width=200, height=200');
+          win.document.write('<h1>new window</h1>');
+        }
+//창 닫기
+btn[1].addEventListener('click',() =>{
+  if(win != undefined)
+  win.close();//팝업창을 닫음
+})
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문자열찍기</title>
+</head>
+<body>
+  <p id="typing"></p>
+  <script>
+    //타이핑요소에들어갈글자
+    let x = "Heaven helps those who help themselves.";
+//글자의 순번(INDEX)을 담을 변수
+let i = 0;
+//typing요소 선택
+const typing = document.querySelector("#typing");
+
+//typeWriter 함수생성(typing요소에 x변수의 글자를 한글자씩 순섣로넣어주는함수)
+function typeWriter(){
+  if(i < x.length){ //typing요소에 x변수의 글자중 index가 i번째인 글자를 더해서 출력
+typing.textContent += x[i];
+ i++;//i변수의 값을 1증가 시킴
+ //0.2초 뒤에 typeWriter함수를 호출
+ setTimeout(typeWriter,200);
+}else{i = 0; //i를 0으로 초기화
+  
+  setTimeout(recall, 1000);
+  }}
+
+  function recall(){
+//typing요소의 글자를 비워줍니다.
+typing.textContent = "";
+typeWriter();//다시 typeWriter함수를 호출
+
+}
+
+typeWriter(); //함수 호출
+  </script>
+</body>
+</html>

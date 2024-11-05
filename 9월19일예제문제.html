@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+      }
+
+      .all {
+        display: flex;
+        justify-content: space-around;
+        width: 1220px;
+        height: 100px;
+        position: relative;
+        background-color: orange;
+      }
+
+      .sub {
+        display: none;
+        position: absolute;
+        width: 100%;
+      }
+
+      .gnb {
+        position: absolute;
+        right: 20px;
+        top: 17px;
+      }
+
+      .logo {
+        position: absolute;
+        left: 0;
+      }
+
+      li {
+        margin: 20px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .sub > li:hover > a {background-color: blue;
+      color: #fff;}
+      .gnb > li:hover > .sub{display: block;}
+    </style>
+  </head>
+  <body>
+    <div class="all">
+      <div class="logo">
+        <img src="/연습문제이미지/logo.png" alt="" />
+      </div>
+      <nav>
+        <header>
+          <div class="container">
+            <ul class="gnb">
+              <li>
+                <a href="#">ABOUT</a>
+                <ul class="sub">
+                  <li><a href="#">My Name</a></li>
+                  <li><a href="#">Birth Day</a></li>
+                  <li><a href="#">Education</a></li>
+                </ul>
+              </li>
+
+              <li></li>
+              <li>
+                <a href="#">NEWS</a>
+                <ul class="sub">
+                  <li><a href="#">Today News</a></li>
+                  <li><a href="#">Social</a></li>
+                  <li><a href="#">Informaition</a></li>
+                </ul>
+              </li>
+
+              <li></li>
+              <li>
+                <a href="">PORTFOLIO</a>
+                <ul class="sub">
+                  <li><a href="">Wed Design</a></li>
+                  <li><a href="">Web Development</a></li>
+                  <li><a href="">Printout</a></li>
+                  <li><a href="">MY Photo</a></li>
+                  <li><a href="">Illustration</a></li>
+                </ul>
+              </li>
+
+              <li></li>
+              <li>
+                <a href="">BOARD</a>
+                <ul class="sub">
+                  <li><a href="">Notice</a></li>
+                  <li><a href="">Free Board</a></li>
+                  <li><a href="">Contact Me</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </header>
+      </nav>
+    </div>
+  </body>
+</html>
