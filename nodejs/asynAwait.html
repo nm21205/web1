@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  function delay(ms) {
+    return new Promise(resolve => {
+      setTimeout(()=>{
+        console.log(`${ms} 밀리초가 지났습니다.`);
+        resolve()
+      }, ms);
+    }); 
+  }
+
+
+
+
+    //async/await방식
+    async function main(){
+      await delay(1000);
+      await delay(2000);
+      const result = await Promise.resolve("끝");
+      console.log(result)
+    }
+
+    //main 함수 호출
+
+    main();
+
+  </script>
+</body>
+</html>
