@@ -1,25 +1,21 @@
-import {useState} from 'react';
-import GroupCompoenet from './GroupComponent';
+import React from 'react';
+//부모컨포넌트로부터 value와 increase함수를 props로 전달받음
 
-function CounterA(){
-console.log("CounterA")
-//value값을 0으로 초기화
-const [value, setValue] = useState(0);
+function CounterA({value, increase}) {
+	//console.log("CounterA 호출됨");
+	//const [value, setValue] = useState(0);
 
-return(
+	return (
+		<div className="box">
+			<h1>CounterA</h1>
 
-  
-
-
-  <div className='box'>
-    <h1>CounterA</h1>
-    {/*버튼을 누를때마다 벨류 1증가*/}
-    <button onClick={()=> setValue(value + 1)}>
-      {value}
-    </button>
-    <GroupCompoenet/>
-  </div>
-)
+			<button onClick={increase}>
+				{ value }
+			</button>
+		</div>
+	)
 }
 
-export default CounterA;
+//보모컴퍼넌트의 상태가 변경되었을때 자식 컴포넌트가 리렌더링 되는 것을 막아줌
+
+export default React.memo(CounterA);

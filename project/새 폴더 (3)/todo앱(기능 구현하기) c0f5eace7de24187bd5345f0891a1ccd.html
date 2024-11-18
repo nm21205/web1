@@ -1,0 +1,1105 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>todo앱(기능 구현하기)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c0f5eace-7de2-4187-bd53-45f0891a1ccd" class="page sans"><header><h1 class="page-title">todo앱(기능 구현하기)</h1><p class="page-description"></p></header><div class="page-body"><h1 id="0936427b-43fb-4412-b5bb-3f68261f97b3" class="">App에서 todos 상태 사용하기</h1><p id="2063797d-99a7-4946-b7fa-99aacf0dcce9" class="">나중에 추가할 일정 항목에 대한 상태들은 모두 App 컴포넌트에서 관리 합니다.</p><p id="8290c8e3-552d-44a1-8ed3-d93f7d67c3e4" class="">App에서 useState를 사용하여 todos라는 상태를 정의하고, todos를 TodoList의 props로 전달하겠습니다.</p><p id="21eb548c-593e-4dca-9184-1807b18d4ff9" class="">
+</p><h3 id="ac21d6bd-73d4-4e91-9682-57a765c1af4b" class="">App.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e54b9df3-4149-4026-b5e6-5507ef076226" class="code"><code class="language-JavaScript">import { useState } from &quot;react&quot;;
+import TodoContainer from &quot;./components/TodoContainer&quot;;
+import TodoInput from &quot;./components/TodoInput&quot;;
+import TodoList from &quot;./components/TodoList&quot;;
+
+const App = () =&gt; {
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      text: &#x27;리액트의 기초 알아보기&#x27;,
+      checked: true,
+    },
+    {
+      id: 2,
+      text: &#x27;컴포넌트 스타일링해 보기&#x27;,
+      checked: true,
+    },
+    {
+      id: 3,
+      text: &#x27;일정 관리 앱 만들어 보기&#x27;,
+      checked: false,
+    },
+  ]);
+	
+	return (
+		&lt;TodoContainer&gt;
+			&lt;TodoInput /&gt;
+			&lt;TodoList todos={todos} /&gt;
+		&lt;/TodoContainer&gt;
+	)
+}
+
+export default App;
+</code></pre><p id="2004919c-27a0-4099-93eb-b3832b73ac6e" class="">todos 배열 안에 들어 있는 객체에는 각 항목의 고유 id, 내용, 완료 여부를 알려 주는 값이 포함되어 있다.</p><p id="1721e170-9107-45fb-b6cf-812e10af55f3" class="">todos 배열은 TodoList에 props로 전달하고 TodoList에서 이 값을 받아 온 후 TodoListItem으로 변환하여 렌더링하도록 설정해야 합니다.</p><p id="6b51eff4-6bd5-4747-8f9a-6d5cc65757d7" class="">
+</p><h3 id="94ce82bc-26c5-425f-9ded-d556f4a9dcfd" class="">TodoList.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ca61b41f-b240-486a-b322-62e2fb6937c2" class="code"><code class="language-JavaScript">import TodoListItem from &#x27;./TodoListItem&#x27;;
+import &#x27;./TodoList.scss&#x27;;
+
+const TodoList = ({ todos }) =&gt; {
+  return (
+    &lt;div className=&quot;TodoList&quot;&gt;
+      {todos.map(todo =&gt; (
+        &lt;TodoListItem todo={todo} key={todo.id} /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+};
+
+export default TodoList;</code></pre><p id="3cca7125-3dc6-4c3d-a57f-eb3907305e83" class="">props로 받아온 todos 배열을 map을 통해 TodoListItem으로 이루어진 배열로 변환하여 렌더링해 줍니다.</p><p id="4bdbdbc5-66f2-4738-b214-b06b14123af9" class="">여러 종류의 값을 전달해야 하는 경우 객체로 통째로 전달하는 편이 나중에 성능 최적화를 할 때 편리합니다.</p><p id="ffe55dff-fd94-4b8e-9322-4149165be5f1" class="">
+</p><p id="dbad58e2-7c6c-4c54-9f44-31c2b010b8a2" class="">map을 사용하여 컴포넌트로 변활할 때는 key props를 전달해 주어야 합니다.</p><p id="3e9f8590-b8ee-4f6c-8850-aa1868824713" class="">key값은 각 항목마다 가지고 있는 고유값인 id를 넣어주면 됩니다.</p><p id="ac3d6309-a82f-49d2-80f1-2b7df64ed63f" class="">
+</p><h3 id="9fb7ed93-4afe-4fca-b634-12b99955a465" class="">classnames 설치</h3><p id="332e4566-ee90-4347-99ad-acf2c51ad1f5" class="">classnames 모듈은 여러 클래스를 추가할 때 뿐만 아니라, 특정 값이 true/false임에 따라 클래스명을 추가하거나, 추가하지 않도록 하는 것을 간단히 구현할 수 있게 해 줍니다.</p><h3 id="4b80a31d-f05d-4bc3-b964-140152cae3eb" class=""><a href="https://www.npmjs.com/package/classnames">https://www.npmjs.com/package/classnames</a></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c857a592-2ab5-4ed6-8ca1-e4657e545c07" class="code"><code class="language-Bash">npm i classnames --save</code></pre><h3 id="75320a3c-87a7-4b2f-892f-8aa509cf2350" class="">TodoListItem.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="142cd8f6-aedf-4e90-844b-eb25561066ef" class="code"><code class="language-JavaScript">import {
+  MdCheckBoxOutlineBlank,
+  MdCheckBox,
+  MdRemoveCircleOutline,
+} from &#x27;react-icons/md&#x27;;
+import cn from &#x27;classnames&#x27;;
+import &#x27;./TodoListItem.scss&#x27;;
+
+//받아온 todo 객체를 구조 분해 할당으로 각각 text변수와 checked변수에 나눠 할당
+const TodoListItem = ({ todo }) =&gt; {
+  const { text, checked } = todo;
+
+  return (
+    &lt;div className=&quot;TodoListItem&quot;&gt;
+      &lt;div className={cn(&#x27;checkbox&#x27;, { checked })}&gt;
+        {checked ? &lt;MdCheckBox /&gt; : &lt;MdCheckBoxOutlineBlank /&gt;}
+        &lt;div className=&quot;text&quot;&gt;{text}&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;remove&quot;&gt;
+        &lt;MdRemoveCircleOutline /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default TodoListItem;</code></pre><p id="cb686754-b39e-4098-9b15-5090ca17309f" class=""> </p><p id="a1a5bbcf-8665-4941-a0b0-e2dee8da19b7" class="">&lt;div className=<strong>{cn(&#x27;checkbox&#x27;, { checked })}</strong>&gt;<br/>        <br/><strong>{checked ? &lt;MdCheckBox /&gt; : &lt;MdCheckBoxOutlineBlank /&gt;}</strong><br/>        &lt;div className=&quot;text&quot;&gt;<br/><strong>{text}</strong>&lt;/div&gt;<div class="indented"><p id="b01f1e92-72fd-4463-8dc0-3a408dcc2154" class="">classnames로 checked가 true면 checked클래스를 추가해 주고</p><p id="5411f669-0982-4158-8654-2093acc332a5" class="">checked가 true면 <strong>MdCheckBox</strong>컴포넌트를 표시하고, false면 <strong>MdCheckBoxOutlineBlank</strong>컴포넌트를 표시</p><p id="65cd32a9-f7be-4ceb-a933-a653882ca9c0" class="">.text에는 text변수에 담긴 값을 표시한다.</p></div></p><p id="1979747e-ae15-4aee-b918-bd6676c49aed" class="">
+</p><figure id="16a93720-9384-4412-ad2e-54e3d5a5138b" class="image" style="text-align:left"><a href="Untitled.png"><img style="width:525.9658813476562px" src="Untitled.png"/></a></figure><p id="ab331a05-1f9a-40d2-b4c1-dff034703e16" class="">
+</p><hr id="21c010d3-603b-4ed2-87a9-26b2b1885db0"/><h1 id="74a19897-3df4-43af-aca8-7484248c4f72" class="">항목 추가 기능 구현하기</h1><p id="e5a40a32-1307-4120-8373-2432edb92e4f" class="">항목 추가 기능을 구현하려면 <strong>TodoInput</strong> 컴포넌트에서 인풋 상태를 관리하고<strong> </strong></p><p id="f88ea91e-3558-4794-b4f2-a9470b2161e9" class=""><strong>App</strong> 컴포넌트에는 todos 배열에 새로운 객체를 추가하는 함수를 만들어 주어야 합니다.</p><p id="3b1bf758-8a9c-4d43-b4db-05ba010e25b1" class="">
+</p><h3 id="0c2cc11c-b61f-48d7-9fb7-13cf50a45fdb" class="">TodoInput.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="694303c7-944c-43af-bc59-0a102dec5644" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import React, { useState, useCallback } from &#x27;react&#x27;;
+import { MdAdd } from &quot;react-icons/md&quot;;
+import &#x27;./TodoInput.scss&#x27;;
+
+const TodoInput = () =&gt; {
+//입력값을 관리할 수 있도록 useState를 사용하여 value상태를 정의
+  const [value, setValue] = useState(&#x27;&#x27;);
+
+// 인픗에 글자를 입력할 때 컴포넌트가 리렌더링될 때마다 함수를 새로 만들지 않고, 한번만 함수를 만들고 재사용할 수 있도록 useCallback훅을 사용합니다.
+  const onChange = useCallback((e) =&gt; {
+    setValue(e.target.value);
+  }, []);
+
+  return (
+    &lt;form className=&#x27;TodoInput&#x27;&gt;
+      &lt;input
+        placeholder=&quot;할 일을 입력하세요&quot;
+        value={value}
+        onChange={onChange}
+      /&gt;
+      &lt;button type=&#x27;submit&#x27;&gt;
+        &lt;MdAdd /&gt;
+      &lt;/button&gt;
+    &lt;/form&gt;
+  )
+}
+
+export default TodoInput;</code></pre><h3 id="3110caa0-61ce-49f1-a7bf-3226135e2997" class="">리액트 개발자 도구에서 인풋에 글자를 입력할 때마다 상태가 변경되는지 확인</h3><figure id="72f110a2-704d-48c4-812c-4f856f060dd9" class="image"><a href="%25EC%25BA%25A1%25EC%25B2%2598.jpg"><img style="width:708px" src="%25EC%25BA%25A1%25EC%25B2%2598.jpg"/></a></figure><p id="f038e468-6ee2-4e70-9bb6-15975e9e6199" class="">
+</p><hr id="ed1165ae-ff6f-4b35-bfde-1ec7a9416b2e"/><h2 id="3e63a83d-87b7-430a-99a6-c3ae55070071" class="">todos 배열에 새 객체 추가하기</h2><h3 id="c8f32a08-ff3b-4035-8218-78c63beec656" class="">App.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2e38bacf-fcfb-453c-a9ad-b9387aeffe68" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import React, { useState, useRef, useCallback } from &#x27;react&#x27;;
+import TodoContainer from &quot;./components/TodoContainer&quot;;
+import TodoInput from &quot;./components/TodoInput&quot;;
+import TodoList from &quot;./components/TodoList&quot;;
+
+const App = () =&gt; {
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      text: &#x27;리액트의 기초 알아보기&#x27;,
+      checked: true,
+    },
+    {
+      id: 2,
+      text: &#x27;컴포넌트 스타일링해 보기&#x27;,
+      checked: true,
+    },
+    {
+      id: 3,
+      text: &#x27;일정 관리 앱 만들어 보기&#x27;,
+      checked: false,
+    },
+  ]);
+
+  // 새로운 객체를 만들때마다 id값을 1씩 더해 주어야 하므로 useRef훅을 사용하여 관리
+  // 다음에 추가할 객체의 id값은 4이므로 초기값으로 4를 전달
+  const nextId = useRef(4);
+
+//todos 배열에 새객체를 추가하는 함수, 아래 TodoInput에서 입력한 값을 파라미터(text)로 전달 받음
+  const onInput = useCallback(
+    (text) =&gt; {
+      const todo = {
+        id: nextId.current,
+        text,
+        checked: false,
+      };
+      setTodos(todos.concat(todo)); //새 객체를 todos에 추가
+      nextId.current += 1; // nextId 1 씩 더하기
+    },
+    [todos]
+  );
+  
+	return (
+		&lt;TodoContainer&gt;
+			&lt;TodoInput onInput={onInput} /&gt;
+			&lt;TodoList todos={todos} /&gt;
+		&lt;/TodoContainer&gt;
+	)
+}
+
+export default App;
+</code></pre><p id="4048dd17-0972-46a9-ba45-3ad40937ce9c" class="">
+</p><p id="5f1c7d9c-000a-4bf9-abeb-13a4002c93e7" class=""><strong>useRef를 사용하여 컴포넌트에서 사용할 변수를 만드는 이유</strong> =</p><p id="2d3ce9e6-0413-477d-aa27-b66d85171e87" class="">id 값은 렌더링되는 정보가 아니기 때문에 값이 변경된다고 하더라도 컴포넌트가 리렌더링될 필요가 없으므로 useState가 아닌 useRef를 사용한 것입니다.</p><p id="454d83dd-bcea-4e50-803a-c81088f9b7c7" class="">id값은 단순히 새로운 항목을 만들 때 참조되는 값일 뿐입니다.</p><p id="5362e718-276b-4f83-9076-4fbfa33bb68f" class="">
+</p><hr id="2517f438-b5b8-48b8-91c4-f81ab0988bee"/><h2 id="aab3e47d-2f35-4010-b8ea-9c0982a0fa4d" class="">TodoInput에 onSubmit 이벤트 설정하기</h2><h3 id="0610a062-2251-4f90-89d2-ced11444baaf" class="">TodoInput.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a298fafb-0bc5-4336-88a0-4c6e94d41179" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import React, { useState, useCallback } from &#x27;react&#x27;;
+import { MdAdd } from &quot;react-icons/md&quot;;
+import &#x27;./TodoInput.scss&#x27;;
+
+//App컴포넌트에서 onInput함수를 파라미터로 받아서
+const TodoInput = ({ onInput }) =&gt; {
+  const [value, setValue] = useState(&#x27;&#x27;);
+
+  const onChange = useCallback((e) =&gt; {
+    setValue(e.target.value);
+  }, []);
+
+  const onSubmit = useCallback(
+    e =&gt; {
+		  //onInput함수에 현재 useState를 통해 관리하고 있는 value값을 파라미터로 넣어서 호출
+      onInput(value);
+      setValue(&#x27;&#x27;); // value 값 초기화
+
+      // submit 이벤트는 브라우저에서 새로고침을 발생시킵니다.
+      // 이를 방지하기 위하여 이 함수를 호출합니다.
+      e.preventDefault();
+    },
+    [onInput, value]
+  );
+
+  return (
+    &lt;form className=&#x27;TodoInput&#x27; onSubmit={onSubmit}&gt;
+      &lt;input
+        placeholder=&quot;할 일을 입력하세요&quot;
+        value={value}
+        onChange={onChange}
+      /&gt;
+      &lt;button type=&#x27;submit&#x27;&gt;
+        &lt;MdAdd /&gt;
+      &lt;/button&gt;
+    &lt;/form&gt;
+  )
+}
+
+export default TodoInput;</code></pre><p id="bcba3064-0d5b-4679-9d58-189ee23a8619" class="">
+</p><p id="eb4eabfe-275c-4e5f-856a-cfb7f4c707a6" class="">onSubmit함수를 만들고, 이를 form의 onSubmit으로 설정했습니다.</p><p id="8957e4e5-fc90-49eb-a435-09596c2857eb" class="">이 함수가 호출되면 props로 받아온 onInput 함수를 현재 value값을 파라미터로 넣어서 호출하고,</p><p id="eadac86d-5c5c-4bd2-84bf-94aad7cf6fc7" class="">현재 value값을 초기화 합니다.</p><figure id="836ae0c5-5a79-455d-a5c7-04172c872c84" class="image" style="text-align:left"><a href="Untitled%201.png"><img style="width:531.9744262695312px" src="Untitled%201.png"/></a></figure><p id="0dc7afff-b506-40ad-bb0d-10de2739bbfe" class="">
+</p><hr id="c132fb46-8bbb-4a9f-9a87-7cc138b3f500"/><h1 id="7d67163f-56f9-4865-94e6-735347c5f082" class="">지우기 기능 구현하기</h1><p id="1f6e1b39-8dc6-4ac5-9ded-e6716a569701" class="">리액트 컴포넌트에서 배열의 불변성을 지키면서 배열 원소를 제거해야 할 경우, </p><p id="1315b209-5f79-43d9-93c3-36da61abb531" class="">배열 내장 함수인 filter를 사용하면 됩니다.</p><p id="1ef5e74d-253a-4934-a866-5e450f276744" class="">
+</p><p id="d99a3027-ced6-4235-993b-ab017f60c29f" class="">※filter함수는 기존의 배열은 그대로 둔 상태에서 특정 조건에 만족하는 원소들만 따로 추출하여 새로운 배열을 만들어 줍니다.</p><p id="039351c0-4acf-4ec7-99e6-9c02a0b2241c" class="">
+</p><h3 id="ef58d95c-d659-4ac6-996c-f8f80c1d554f" class="">예)</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bfb58a60-787e-426d-a698-166d8f4facc2" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const biggerThanFIve = array.filter.(number =&gt; number &gt; 5);
+//결과 : [6, 7, 8, 9, 10]</code></pre><p id="30bf0333-ba8f-49f3-aeee-a15548a6bf38" class="">파라미터로 넣는 함수는 true 혹은 false 값을 반환해야 하며, 여기서 true를 반환하는 경우만 새로운 배열에 포함됩니다.</p><p id="f8f2fa15-cdeb-48e2-ab4f-0131d057eb20" class="">
+</p><h2 id="5f2a01e2-0022-4c20-b89c-0ed6e515c9db" class="">todos 배열에서 id로 항목 지우기</h2><h3 id="43a9677d-818d-4a84-b9e9-03cb05b8a12d" class="">App.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="82b0fb6d-09c5-45a1-a514-808ac8d36659" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import React, { useState, useRef, useCallback } from &#x27;react&#x27;;
+import TodoContainer from &quot;./components/TodoContainer&quot;;
+import TodoInput from &quot;./components/TodoInput&quot;;
+import TodoList from &quot;./components/TodoList&quot;;
+
+const App = () =&gt; {
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      text: &#x27;리액트의 기초 알아보기&#x27;,
+      checked: true,
+    },
+    {
+      id: 2,
+      text: &#x27;컴포넌트 스타일링해 보기&#x27;,
+      checked: true,
+    },
+    {
+      id: 3,
+      text: &#x27;일정 관리 앱 만들어 보기&#x27;,
+      checked: false,
+    },
+  ]);
+
+  const nextId = useRef(4);
+  const onInput = useCallback(
+    (text) =&gt; {
+      const todo = {
+        id: nextId.current,
+        text,
+        checked: false,
+      };
+      setTodos(todos.concat(todo));
+      nextId.current += 1;
+    },
+    [todos]
+  );
+  
+  const onRemove = useCallback(
+	  //app컴포넌트에서 id를 파라미터로 가져와서
+    id =&gt; { 
+    //id값이 일치하지 않는 배열요소만 새로운 배열로 생성하여 todos에 다시 할당함(해당 배열요소를 제거해 줌)
+      setTodos(todos.filter(todo =&gt; todo.id !== id))
+    },
+    [todos]
+  );
+  
+	return (
+		&lt;TodoContainer&gt;
+			&lt;TodoInput onInput={onInput} /&gt;
+			{//onRemove함수를 호출}
+			&lt;TodoList todos={todos} onRemove={onRemove} /&gt;
+		&lt;/TodoContainer&gt;
+	)
+}
+
+export default App;
+</code></pre><h2 id="f5d35c17-ceda-48b6-a7b1-b6238caeec62" class="">TodoListItem에서 삭제 함수 호출하기</h2><h3 id="77925755-a596-4f91-a85d-83d288df4108" class="">TodoList.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10cf2a06-6c1b-4061-b634-6ae730402a10" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import TodoListItem from &#x27;./TodoListItem&#x27;;
+import &#x27;./TodoList.scss&#x27;;
+
+//props로 받아온 onRemove 함수를 TodoListItem에 그대로 전달
+const TodoList = ({ todos, onRemove  }) =&gt; {
+  return (
+    &lt;div className=&quot;TodoList&quot;&gt;
+      {todos.map(todo =&gt; (
+        &lt;TodoListItem
+          todo={todo}
+          key={todo.id}
+          onRemove={onRemove}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+};
+
+export default TodoList;</code></pre><p id="16088f3e-0e13-461a-b3e1-9470bed23437" class="">TodoListItem에서 방금 만든 onRemove함수를 사용하려면 우선 TodoList 컴포넌트를 거쳐야 합니다.</p><p id="c019b0c6-dcc9-4228-81e6-d7fbc66591c3" class="">
+</p><h3 id="8fad7f0d-3ac6-4453-bebf-de136025c6a3" class="">TodoListItem.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7fe41e19-3f1e-4111-a2d2-fdf101147cec" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import {
+  MdCheckBoxOutlineBlank,
+  MdCheckBox,
+  MdRemoveCircleOutline
+} from &#x27;react-icons/md&#x27;;
+import cn from &#x27;classnames&#x27;;
+import &#x27;./TodoListItem.scss&#x27;;
+
+const TodoListItem = ({ todo, onRemove  }) =&gt; {
+  const { id, text, checked } = todo;
+
+  return (
+    &lt;div className=&quot;TodoListItem&quot;&gt;
+      &lt;div className={cn(&#x27;checkbox&#x27;, { checked })}&gt;
+        {checked ? &lt;MdCheckBox /&gt; : &lt;MdCheckBoxOutlineBlank /&gt;}
+        &lt;div className=&quot;text&quot;&gt;{text}&lt;/div&gt;
+      &lt;/div&gt;
+      {//삭제버튼을 누르면 TodoListItem에서 onRemove함수에 현재 자신이 가진 id를 넣어서 삭제 함수를 호출하도록 설정}
+      &lt;div className=&quot;remove&quot; onClick={() =&gt; onRemove(id)}&gt;
+        &lt;MdRemoveCircleOutline /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default TodoListItem;</code></pre><p id="67c5cfe4-5335-4c58-bd38-826498df0957" class="">
+</p><hr id="db1efa69-9fc3-4bb4-9114-a44bcf5b5383"/><h1 id="e7570403-b997-4790-a3f0-d1ee2ad65e64" class="">수정 기능</h1><p id="c4a33a5f-f2bf-4735-a764-28ed885f1533" class="">onToggle이라는 함수를 App에 만들고, </p><p id="8e58197a-06bd-4b87-8edd-2807d786e189" class="">해당 함수를 TodoList 컴포넌트에게 props로 넣어 줍니다.</p><p id="a1640274-b09f-46fc-9beb-8f75d3e2badd" class="">그리고 TodoList를 통해 TodoListItem까지 전달해 주면 됩니다.</p><p id="07fa1f73-3316-4eca-992f-3a9c0d323056" class="">
+</p><h2 id="4992fe24-f85f-4d5f-939d-499c3d535839" class="">onToggle 구현</h2><h3 id="191cf593-9c60-4212-bed3-78099792417b" class="">App.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="815e8d67-e087-419d-bd2a-424eb3ebb269" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import React, { useState, useRef, useCallback } from &#x27;react&#x27;;
+import TodoContainer from &quot;./components/TodoContainer&quot;;
+import TodoInput from &quot;./components/TodoInput&quot;;
+import TodoList from &quot;./components/TodoList&quot;;
+
+const App = () =&gt; {
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      text: &#x27;리액트의 기초 알아보기&#x27;,
+      checked: true,
+    },
+    {
+      id: 2,
+      text: &#x27;컴포넌트 스타일링해 보기&#x27;,
+      checked: true,
+    },
+    {
+      id: 3,
+      text: &#x27;일정 관리 앱 만들어 보기&#x27;,
+      checked: false,
+    },
+  ]);
+
+  const nextId = useRef(4);
+  const onInput = useCallback(
+    (text) =&gt; {
+      const todo = {
+        id: nextId.current,
+        text,
+        checked: false,
+      };
+      setTodos(todos.concat(todo));
+      nextId.current += 1;
+    },
+    [todos]
+  );
+  
+  const onRemove = useCallback(
+    id =&gt; { 
+      setTodos(todos.filter(todo =&gt; todo.id !== id))
+    },
+    [todos]
+  );
+  
+  const onToggle = useCallback(
+    id =&gt; {
+      setTodos(
+        todos.map(todo =&gt; 
+          todo.id === id ? {...todo, checked : !todo.checked} : todo
+        )
+      )
+    },
+    [todos]
+  )
+  
+	return (
+		&lt;TodoContainer&gt;
+			&lt;TodoInput onInput={onInput} /&gt;
+			{//onRemove함수를 호출}
+			&lt;TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} /&gt;
+		&lt;/TodoContainer&gt;
+	)
+}
+
+export default App;
+</code></pre><p id="4bebc14e-5427-4c26-b6f0-e3ff3d09bea5" class="">map을 사용하여 특정 id를 가지고 있는 객체의 checked 값을 반전 시켜 줍니다.</p><p id="ef0c6141-0c8e-4e06-b936-03a468e069e9" class="">
+</p><p id="a21d7572-407e-4a14-a329-35e6f28017cd" class=""><strong>todo.id === id ? {...todo, checked : !todo.checked} : todo</strong><div class="indented"><p id="8378b313-4d5c-4ce6-aa61-dc59dd5fbb43" class="">삼항 연산자로 todo.id와 현재 파라미터로 사용된 id값이 같을 때,</p><p id="4f1bca95-3b49-4cd5-b002-c24405745537" class="">checked값을 반전하여 새로운 객체를 만들고,</p><p id="ef31d788-f5c6-4a11-8874-d26d261381d8" class="">id값이 다를 때는 변화를 주지 않고 처음 받아왔던 상태 그대로 반환합니다.</p></div></p><p id="58374eaf-ab58-4bf9-9f0d-56a19a788762" class="">
+</p><h2 id="afa8af36-85c9-43e8-ad08-f018d16b6cf8" class="">TodoListItem에서 토글 함수 호출</h2><p id="c33c6a10-3c34-43ab-83ab-3db80fa8c074" class="">App에서 만든 onToggle 함수를 TodoLIstItem에서도 호출할 수 있도록 TodoList를 거쳐 TodoListItem에게 전달 합니다.</p><h3 id="dcb8af32-4fb7-421b-8e6b-a9ddc7ae1edd" class="">TodoList.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8effdd00-8387-4f8e-90cd-243adbc817e4" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import TodoListItem from &#x27;./TodoListItem&#x27;;
+import &#x27;./TodoList.scss&#x27;;
+
+const TodoList = ({ todos, onRemove, onToggle }) =&gt; {
+  return (
+    &lt;div className=&quot;TodoList&quot;&gt;
+      {todos.map(todo =&gt; (
+        &lt;TodoListItem
+          todo={todo}
+          key={todo.id}
+          onRemove={onRemove}
+          onToggle={onToggle}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+};
+
+export default TodoList;</code></pre><p id="65788cb4-df09-452a-a803-4d7d4166609a" class="">
+</p><h3 id="f4de5322-c9e0-4c05-9c3a-63fda022d07b" class="">TodoListItem.js</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2d7627f8-5b96-4446-9a7d-c80cc5601a1a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import {
+  MdCheckBoxOutlineBlank,
+  MdCheckBox,
+  MdRemoveCircleOutline
+} from &#x27;react-icons/md&#x27;;
+import cn from &#x27;classnames&#x27;;
+import &#x27;./TodoListItem.scss&#x27;;
+
+const TodoListItem = ({ todo, onRemove, onToggle }) =&gt; {
+  const { id, text, checked } = todo;
+
+  return (
+    &lt;div className=&quot;TodoListItem&quot;&gt;
+      &lt;div className={cn(&#x27;checkbox&#x27;, { checked })} onClick={() =&gt; onToggle(id)}&gt;
+        {checked ? &lt;MdCheckBox /&gt; : &lt;MdCheckBoxOutlineBlank /&gt;}
+        &lt;div className=&quot;text&quot;&gt;{text}&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;remove&quot; onClick={() =&gt; onRemove(id)}&gt;
+        &lt;MdRemoveCircleOutline /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default TodoListItem;</code></pre><p id="cac7dd61-4561-4d60-aedb-c1a991ef1493" class="">
+</p><h3 id="a1522886-fcdb-41d7-82db-8985a9106100" class="">체크박스를 눌러서 상태가 잘 업데이트 되는지 확인</h3><figure id="67fa9d97-73d3-4693-9895-96cf86153e14" class="image" style="text-align:left"><a href="Untitled%202.png"><img style="width:530px" src="Untitled%202.png"/></a></figure><p id="79b4e015-e8af-4f02-8565-198e852a5070" class="">
+</p><h1 id="f228ba69-4853-4d90-8afa-32fd5c3ed621" class="">정리</h1><p id="fb06412c-399c-430e-b28a-42e31deb1e4f" class="">이번에 만든 프로젝트는 소규모이기 때문에 따로 컴포넌트 리렌더링 최적화 작업을 하지 않아도 정상적으로 작동 됩니다.</p><p id="c752de7a-e8dd-4413-95dd-c7e94076be57" class="">하지만 일정 항목이 몇 만 개씩 생긴다면 새로운 항목을 추가하거나 기존 항목을 삭제 및 토글할 때</p><p id="21f24db8-d3f3-470c-a85b-470e52785c9b" class="">지연이 발생할 수 있습니다.</p><p id="97b0dea7-4e3e-4717-9d8d-751e751aa05d" class="">클라이언트 자원을 더욱 효율적으로 사용하려면 불필요한 리렌더링을 방지해야 합니다.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
