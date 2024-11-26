@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let s = "123.456px"; // 숫자를 따옴표로 감싸주었기 때문에 문자열로 인식
+
+    console.log(parseInt(s)); // 123 - 정수로 변환
+    console.log(s);          // "123.456px" - 원본 문자열 출력
+
+    console.log(parseFloat(s)); // 123.456 - 실수로 변환
+    console.log(Number(s));     // NaN - 전체 문자열이 숫자로 변환될 수 없어서 NaN 반환
+
+    // 형변환: Number -> String으로 변환
+    // 1. toString(), 2. String() - 둘 다 숫자를 문자열로 변경해 줌
+
+    let b = 123.456;
+    console.log(typeof b);          // "number" - b는 숫자
+    console.log(typeof b.toString); // "function" - b.toString은 함수
+    console.log(typeof String(b));  // "string" - String(b)는 문자열로 변환된 결과
+
+    //round(반올림), floor(내림), ceil(올림)
+
+    console.log(10/3)
+    console.log(Math.round(10/3))
+    console.log(10/4)
+    console.log(Math.round(10/4))
+    console.log(Math.floor(4.99))
+    console.log(Math.ceil(4.01))
+  </script>
+</body>
+</html>

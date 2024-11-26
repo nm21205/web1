@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // iterable.filter 예제 1: 숫자 필터링
+    const numbers = [1,2,3,4,5];
+    const odds = numbers.filter(item => item % 2);
+    console.log(odds);
+
+    
+    // filter 메서드 예제 2: 과일 상품 필터링
+    class FruitShop {
+      constructor() {
+        this.products = [
+          {id: 1, name: '사과'},
+          {id: 2, name: '바나나'}
+        ]
+      }
+      // 상품 검색
+      searchProduct(id) {
+        // id로 상품 찾기
+        return this.products.filter(fruit => fruit.id === id);
+      }
+      // 상품 삭제
+      deleteProduct(id) {
+        // id가 일치하는 상품 제거
+        this.products = this.products.filter(fruit => fruit.id !== id);
+      }
+    }
+
+    const shop = new FruitShop();
+    let apple = shop.searchProduct(1);  // 사과 찾기
+    console.log(apple);
+
+    shop.deleteProduct(1);  // 사과 삭제
+    console.log(shop.products);  // 바나나만 남음
+  </script>
+</body>

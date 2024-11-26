@@ -12,16 +12,20 @@
     <legend>먼저 실행하세요</legend>
     <a href="history객체2.html">앞으로 가기</a>
   </fieldset>
-<script>
-  const btn = document.querySelector("input");
-  btn,onclick = function();{
-    history.forward();
-  }
-</script>
+
   <fieldset>
     <legend>다음 실행하세요</legend>
     <input type="button" value="앞으로 가기">
   </fieldset>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const btn = document.querySelector("input");
+      btn.onclick = function () {
+        history.forward();
+      };
+    });
+  </script>
 </body>
 
 </html>

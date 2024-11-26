@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let recrtangle = {
+      width:4,
+      height:5,
+      method(){
+        let getArea = function(){
+          return this.width * this.height;
+        }
+        //getArea함수를 복사해서 새 함수를 만들고,
+        //그 새 함수를 getArea2 지역변수에 대입
+        //새 함수 본문의 this는 rectangle객체를 가르킨다
+        let getArea2 = getArea.bind(reactangle)
+        console.log(getArea2()) 
+        //getArea2 본문의 this는 이미 rectangle 객체를 가르키되록 설정되어있다.
+      }
+    }
+
+    rectangle.method()
+
+    //func2 = func1.bind(obj) = 이와 같은 코드로 obj객체에 bind된 func2 본문의 this는 obj 객체를 가르킨다.
+  </script>
+</body>
+</html>

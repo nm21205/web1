@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function getData(){
+      return new Promise(function(resolve, reject){
+        // let data = 100;
+        // resolve(data);
+        reject(new Error("오류 발생!"))
+      })
+    }
+
+    //resolve의 결과값 data를 resolvedData매개 변수로 받음
+
+    getData()
+    .then(function(resolvedData){
+      console.log(resolvedData)
+    })
+
+    .catch(function(err){//reject의 결과 값 Error를 err로 받음
+    console.log(err)  
+    })
+
+    //프로미스 체이닝 
+    function doSomething(){
+      return new Promise((resolve, reject) => {
+        resolve(100)///.then핸들러의 인자로 100을 전달
+      })
+    }
+
+    doSomething()
+    .then((value1) => {//resolve메서드의 인자값을 value1매개변수로 받음
+      const data1 = value1 + 50;
+      console.log(data1)
+      return data1 //data1을 반환
+    })
+
+    .then((value2)=>{
+      const data2 = value2 + 50;
+      console.log(data2)
+      return data2
+    })
+    .then((value3)=>{
+      const data3 = value3 + 50;
+      console.log(data3)
+      return data3
+    })
+    
+
+    promise.all(promises)
+    .then((results)=> {
+      console.log(results); //[user1, users2, users3]
+    })
+    .catch((error) => {
+      //어느 하나라도프로미스가 거부되면 오류를 출력
+      console.log(error)
+    })
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+let rectangle1 = {
+      width:4,
+      height:5,
+      //객체의 프로퍼티로 할당되는 함수는 function을 생략할수 있다.
+      method(){
+        let area = this.width * this.height;
+        console.log(area)
+      }
+    }
+    rectangle1.method();
+
+
+
+
+    let rectangle2 = {
+      width:4,
+      height:5,
+      //객체의 프로퍼티로 할당되는 함수는 function을 생략할수 있다.
+      method(){
+        let area = this.width * this.height;
+        console.log(area)
+      }
+    }
+    rectangle2.method();
+
+    let rectangle3 = {
+      width:4,
+      height:5,
+      method(){
+        //inner함수 안의 this는 어떤 객체를 가르키지 않는다, 그래서 return값이 NaN이 반환됩니다.
+
+        function getArea(){
+          console.log(this)
+          return this.width * this.height;
+        }
+        console.log(getArea());
+        //화살표 함수
+        let getArea2 = () => {
+          //화살표 함수내의 this는 상위 객체(recrtangle3)를 가르킨다.
+          return this.width * this.height;
+        }
+        console.log(getArea2());
+
+      }
+    }
+
+    rectangle3.method();
+  </script>
+</body>
+</html>

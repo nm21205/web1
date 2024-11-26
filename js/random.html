@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+
+    }
+  </style>
+</head>
+<img src="img/p1.jpg" alt="">
+<img src="img/p2.jpg" alt="">
+<img src="img/p3.jpg" alt="">
+<body>
+
+ <script>
+  let MAX =5;
+  let MIN = 2;
+  //random - 난수 메소드
+  console.log(Math.random()) //0~1사이의 랜덤한 숫자를 생성
+  for(let i=0; i<20; i++){
+    //20번 반복적으로 수행되는 코드
+    let a = Math.floor(Math.random()*(MAX-MIN+1) + MIN)
+    console.log(a)
+  }
+
+  MIN=1
+  MAX=20
+  //이미지 랜덤 변경
+  const imgs = document.querySelectorAll("img");
+
+  //imgs배열에 있는 이미지요소를 순회하면서 코드를 실행
+  imgs.forEach(img => img.addEventListener('click',() => {
+    //모든 이미지 요소에 클릭 이벤트를 발생
+    //0~20사이의 숫자를 하나선택 소수점 이하값을 올림처리 하고 정수반환 후 변수 n에 저장
+    let n = Math.ceil(Math.random()*(MAX-MIN+1)+MIN);
+    //클릭이벤트가 발생한 이미지의 src속성을 생성한 랜덤값으로 적용하여 변경
+    consol.log(n)
+    img.src = `img/p${n}.jpg`;
+    
+}))
+ </script>
+</body>
+</html>
