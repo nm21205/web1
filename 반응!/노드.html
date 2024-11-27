@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노드</title>
+</head>
+<body>
+  <h1>nodeName 프로퍼티</h1>
+  <p id="document"></p>
+  <p id="html"></p>
+
+  <h1 id="heading">nodeValue 프로퍼티</h1>
+  <p id="text1">텍스트1</p>
+  <p id="text2">텍스트2</p>
+
+  <script>
+    console.log(document.childNodes);
+    // 첫 번째 오류 수정: 불필요한 할당 제거
+    document.getElementById('document').innerHTML = document.childNodes[1].nodeName;
+
+    // 두 번째 오류 수정: childNode -> childNodes, 불필요한 할당 제거
+    document.getElementById('html').innerHTML = document.childNodes[1].childNodes[1].nodeName;
+
+    //아이디가 heading인 요소의 첫번째 자식 노드의 노드 값을 선택함
+    let headingText = document.getElementById('heading').firstChild.nodeValue;
+    console.log(headingText);
+
+    document.getElementById('text1').innerHTML = headingText;
+
+    //아이디가 heading인 요소의 첫번째 자식 노드의 타입을 선택함
+
+    let headingType = document.getElementById("heading").firstChild.nodeType;
+    //1 = element, 2 = attribute, 3 = text, 8 = comment, 9 = document
+    console.log(headingType);
+  </script>
+</body>
+</html>

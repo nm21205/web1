@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="list">
+    <li>첫번째 아이템</li>
+    <li>두번째 아이템</li>
+    <li>세번째 아이템</li>
+  </ul>
+  <script>
+    const lItems = document.getElementsByTagName('li');
+    console.log(lItems);
+    
+    const listItems = document.getElementById('list').childNodes;
+    //자식 노드들 중 첫 번째 li요소의 내용을 변경 함
+    console.log(listItems[1]);
+
+    listItems[1].firstChild.nodeValue = "HTML 요소의 내용을 변경했어요!"
+
+    //appendChild() = 특정 부모 노드의 자식노드 리스트 중 마지막 자식으로 추가
+    const list = document.getElementById("list");
+    const li = document.createElement("li");
+    //2 텍스트노드 생성
+    const textNode = document.createTextNode("네번째 아이템");
+    //3 텍스트 노드를 li요소 노드의 자식으로 추가
+li.appendChild(textNode)
+//4 li요소를 #list요소의 마지막 자식 노드로 추가
+list.appendChild(li)
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //문자열.indexOf("찾을문자열",시작위치)
+    //.문자열에서 부분 문자열을 찾아서 위치값을 반환
+    //시작위치의 디폴트값은 0이고 찾지 못할 경우 -1을 반환
+
+    let s = "one two one two";
+    console.log(s.indexOf("two")); //4
+    console.log(s.indexOf("two",5)); //12
+    console.log(s.indexOf("TWO")); //-1
+
+    //문자열.search(/정규식/) = 문자열에서 정규식을 찾아서, 찾은 위치(index)를 리턴한다.
+    s = "hello World";
+    console.log(s.search(/[A-Z]/)); //6
+
+    //문자열.slice(시작_위치, 끝_위치) =문자열에서 시작위치에서 끝 위치 사이의 부분 문자열을 리턴(시작위치
+    //<= 위치 < 끝위치) 원본 문자열은 변하지 않는다.
+    s = "abcdefgh";
+    console.log(s.slice(2,4)); //cd
+    console.log(s.slice(2)); //2번째 인덱스부터 문자의 끝까지 추출
+    console.log(s.slice(-3)); //fgh
+    console.log(s.substring(2,4)); //cd
+    console.log(s.substring(2)); //2번째 인덱스부터 문자의 끝까지 추출
+    console.log(s.substring(s.length - 3)); //fgh
+    
+    //문자열.substr(시작위치, 문자열의 길이)
+    console.log(s.substr(2,2)); //2번째 인덱스 위치부터 2글자를 추출
+    console.log(s.substr(2)); //2번째 인덱스 위치부터 문자의 끝까지 추출
+    console.log(s.substr(-3)); //뒤에서 3번째 인덱스 위치부터 문자의 끝까지 추출
+
+    //문자열.replace(찾을문자열, 바꿀문자열)
+    //원본문자열은 수정되지 않는다.
+    s = "hello world";
+    console.log(s.replace("o","O")); //hellO world
+    console.log(s.replace(/o/g,"O")); //hellO wOrld
+    //정규식/g = g는 일치하는 부분문자열들을 전부 치환하라는 옵션
+    // /정규식/i = i는 문자열을 비교할 때, 대소문자를 무시하라는 옵션
+
+    //trim() = 문자열의 앞뒤 공백을 제거한다.
+    //원본문자열은 변경하지 않는다.
+    s = " hello world  ";
+    console.log(s.trim()); //hello world
+    //replace와 함께 사용하면 문자열의 모든 공백을 제거할 수 있다.
+    let str = "  hel lo   w orld   ";
+    console.log(str.replaceAll(' ',''));
+    
+    //문자열.split(구분_문자열) = 구분 문자열을 기준으로 잘라서, 배열을 만들어서 리턴한다,
+    //원본은 훼손되지 않는다.
+    s = "one two three four";
+    let a = s.split(' '); //띄어쓰기 기준으로 문자열을 잘라서 배열로 리턴
+    console.log(a); //['one','two','three','four']
+
+    //구분 문자열에 정규식을 사용할 수 있다.
+    s = "one two three four";
+    a = s.split(/[\t ,]+/); //tab(띄어쓰기)과 쉼표를 기준으로 문자열을 잘라서 배열로 리턴
+    console.log(a);
+
+    a = s.split(''); //한글자씩 분리하여 배열로 리턴
+    console.log(a);
+
+    //match(정규식) = 정규식에 일치하는 문자열을 검색하여 반환
+    a = "/list?pg=256315&sz=15".match(/pg=([0-9]+)&sz=([0-9]+)/);
+    console.log(a[0]);
+    console.log(a[1]); //()안쪽 부분이 다음배열요소로 추가된다
+    console.log(a[2]);
+  </script>
+</body>
+</html>
